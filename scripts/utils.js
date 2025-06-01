@@ -33,12 +33,15 @@ export function showModal(contentHtml) {
   // Supprime toute modale existante
   document.querySelectorAll('.modal-bg').forEach(e => e.remove());
 
+  // Log du contenu injecté pour debug
+  console.log('[showModal] HTML injecté :', contentHtml);
+
   // Crée le fond de la modale
   const bg = document.createElement('div');
   bg.className = 'modal-bg';
   bg.style = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);z-index:9999;display:flex;align-items:center;justify-content:center;';
   bg.innerHTML = `
-    <div class="modal" style="background:#222;padding:2em;border-radius:8px;min-width:300px;max-width:90vw;position:relative;">
+    <div class="modal" style="background:#222;color:#fff;padding:2em;border-radius:8px;min-width:300px;max-width:90vw;position:relative;border:2px solid #fff;box-shadow:0 0 20px #000;">
       <button class="modal-close" style="position:absolute;top:1em;right:1em;font-size:2em;background:none;border:none;color:#fff;cursor:pointer;">&times;</button>
       <div class="modal-content">${contentHtml}</div>
     </div>
