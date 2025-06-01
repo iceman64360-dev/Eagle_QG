@@ -1,0 +1,24 @@
+[
+  {
+    "id": "EGC-001",
+    "nom": "ICEMAN",
+    "grade": "Caporal-chef",
+    "unite": "Alpha 1-1",
+    "statut": "Actif",
+    "missions": 7,
+    "notes": "Excellent tireur d'élite. A démontré des compétences exceptionnelles lors de la mission EAGLE EYE.",
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "EGC-002",
+    "nom": "FURY",
+    "grade": "Caporal",
+    "unite": "Alpha 1-1",
+    "statut": "Actif",
+    "missions": 4,
+    "notes": "Spécialiste en tir longue portée.",
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  }
+] 
