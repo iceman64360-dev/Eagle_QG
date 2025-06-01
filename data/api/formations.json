@@ -1,0 +1,30 @@
+[
+  {
+    "id": "FOR-001",
+    "nom": "Tactique de base",
+    "type": "Formation initiale",
+    "dateDebut": "2024-01-10T09:00:00.000Z",
+    "dateFin": "2024-01-12T17:00:00.000Z",
+    "statut": "Terminée",
+    "formateur": "EGC-001",
+    "participants": ["EGC-007"],
+    "objectifs": "Formation aux tactiques de base et au travail d'équipe",
+    "notes": "Formation réussie, tous les objectifs atteints",
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-12T17:00:00.000Z"
+  },
+  {
+    "id": "FOR-002",
+    "nom": "Tir longue portée",
+    "type": "Spécialisation",
+    "dateDebut": "2024-01-25T08:00:00.000Z",
+    "dateFin": "2024-01-27T17:00:00.000Z",
+    "statut": "Planifiée",
+    "formateur": "EGC-002",
+    "participants": ["EGC-003"],
+    "objectifs": "Perfectionnement des techniques de tir longue portée",
+    "notes": "Formation en attente de validation",
+    "createdAt": "2024-01-15T00:00:00.000Z",
+    "updatedAt": "2024-01-15T00:00:00.000Z"
+  }
+] 

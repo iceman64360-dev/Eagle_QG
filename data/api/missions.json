@@ -1,0 +1,30 @@
+[
+  {
+    "id": "MIS-001",
+    "nom": "EAGLE EYE",
+    "type": "Reconnaissance",
+    "dateDebut": "2024-01-15T08:00:00.000Z",
+    "dateFin": "2024-01-15T16:00:00.000Z",
+    "statut": "Terminée",
+    "unite": "Alpha 1-1",
+    "participants": ["EGC-001", "EGC-002"],
+    "objectifs": "Surveillance de la zone nord-est",
+    "notes": "Mission réussie, objectifs atteints",
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-15T16:00:00.000Z"
+  },
+  {
+    "id": "MIS-002",
+    "nom": "SHADOW GUARD",
+    "type": "Protection",
+    "dateDebut": "2024-01-20T12:00:00.000Z",
+    "dateFin": "2024-01-21T12:00:00.000Z",
+    "statut": "En cours",
+    "unite": "Alpha 1-1",
+    "participants": ["EGC-001", "EGC-002", "EGC-003"],
+    "objectifs": "Protection du convoi VIP",
+    "notes": "En cours d'exécution",
+    "createdAt": "2024-01-10T00:00:00.000Z",
+    "updatedAt": "2024-01-20T12:00:00.000Z"
+  }
+] 

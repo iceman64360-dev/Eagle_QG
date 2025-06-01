@@ -1,0 +1,28 @@
+[
+  {
+    "id": "UNT-001",
+    "nom": "Alpha 1-1",
+    "type": "Unité tactique",
+    "chef": "EGC-001",
+    "membres": ["EGC-001", "EGC-002", "EGC-003"],
+    "specialite": "Opérations spéciales",
+    "statut": "Actif",
+    "missions": ["MIS-001", "MIS-002"],
+    "notes": "Unité principale d'intervention",
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "UNT-002",
+    "nom": "Bravo 2-1",
+    "type": "Unité de support",
+    "chef": "EGC-004",
+    "membres": ["EGC-004", "EGC-005", "EGC-006"],
+    "specialite": "Logistique et support",
+    "statut": "En formation",
+    "missions": [],
+    "notes": "Unité en cours de formation",
+    "createdAt": "2024-01-15T00:00:00.000Z",
+    "updatedAt": "2024-01-15T00:00:00.000Z"
+  }
+] 

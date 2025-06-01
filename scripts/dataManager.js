@@ -116,3 +116,225 @@ export async function deleteSoldat(id) {
     throw error;
   }
 }
+
+// Gestion des missions
+export async function getMissions() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/missions`);
+    if (!response.ok) throw new Error('Erreur lors de la récupération des missions');
+    return await response.json();
+  } catch (error) {
+    console.error('Erreur:', error);
+    throw error;
+  }
+}
+
+export async function getMission(id) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/missions/${id}`);
+    if (!response.ok) throw new Error('Erreur lors de la récupération de la mission');
+    return await response.json();
+  } catch (error) {
+    console.error('Erreur:', error);
+    throw error;
+  }
+}
+
+export async function createMission(missionData) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/missions`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(missionData),
+    });
+    if (!response.ok) throw new Error('Erreur lors de la création de la mission');
+    return await response.json();
+  } catch (error) {
+    console.error('Erreur:', error);
+    throw error;
+  }
+}
+
+export async function updateMission(id, missionData) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/missions/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(missionData),
+    });
+    if (!response.ok) throw new Error('Erreur lors de la mise à jour de la mission');
+    return await response.json();
+  } catch (error) {
+    console.error('Erreur:', error);
+    throw error;
+  }
+}
+
+export async function deleteMission(id) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/missions/${id}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) throw new Error('Erreur lors de la suppression de la mission');
+    return true;
+  } catch (error) {
+    console.error('Erreur:', error);
+    throw error;
+  }
+}
+
+// Gestion des formations
+export async function getFormations() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/formations`);
+    if (!response.ok) throw new Error('Erreur lors de la récupération des formations');
+    return await response.json();
+  } catch (error) {
+    console.error('Erreur:', error);
+    throw error;
+  }
+}
+
+export async function getFormation(id) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/formations/${id}`);
+    if (!response.ok) throw new Error('Erreur lors de la récupération de la formation');
+    return await response.json();
+  } catch (error) {
+    console.error('Erreur:', error);
+    throw error;
+  }
+}
+
+export async function createFormation(formationData) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/formations`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formationData),
+    });
+    if (!response.ok) throw new Error('Erreur lors de la création de la formation');
+    return await response.json();
+  } catch (error) {
+    console.error('Erreur:', error);
+    throw error;
+  }
+}
+
+export async function updateFormation(id, formationData) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/formations/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formationData),
+    });
+    if (!response.ok) throw new Error('Erreur lors de la mise à jour de la formation');
+    return await response.json();
+  } catch (error) {
+    console.error('Erreur:', error);
+    throw error;
+  }
+}
+
+export async function deleteFormation(id) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/formations/${id}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) throw new Error('Erreur lors de la suppression de la formation');
+    return true;
+  } catch (error) {
+    console.error('Erreur:', error);
+    throw error;
+  }
+}
+
+// Gestion des unités
+export async function getUnites() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/unites`);
+    if (!response.ok) throw new Error('Erreur lors de la récupération des unités');
+    return await response.json();
+  } catch (error) {
+    console.error('Erreur:', error);
+    throw error;
+  }
+}
+
+export async function getUnite(id) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/unites/${id}`);
+    if (!response.ok) throw new Error('Erreur lors de la récupération de l\'unité');
+    return await response.json();
+  } catch (error) {
+    console.error('Erreur:', error);
+    throw error;
+  }
+}
+
+export async function createUnite(uniteData) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/unites`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(uniteData),
+    });
+    if (!response.ok) throw new Error('Erreur lors de la création de l\'unité');
+    return await response.json();
+  } catch (error) {
+    console.error('Erreur:', error);
+    throw error;
+  }
+}
+
+export async function updateUnite(id, uniteData) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/unites/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(uniteData),
+    });
+    if (!response.ok) throw new Error('Erreur lors de la mise à jour de l\'unité');
+    return await response.json();
+  } catch (error) {
+    console.error('Erreur:', error);
+    throw error;
+  }
+}
+
+export async function deleteUnite(id) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/unites/${id}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) throw new Error('Erreur lors de la suppression de l\'unité');
+    return true;
+  } catch (error) {
+    console.error('Erreur:', error);
+    throw error;
+  }
+}
+
+// Gestion des alertes
+export async function getAlerts() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/alerts`);
+    if (!response.ok) throw new Error('Erreur lors de la récupération des alertes');
+    return await response.json();
+  } catch (error) {
+    console.error('Erreur:', error);
+    throw error;
+  }
+}

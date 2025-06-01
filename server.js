@@ -19,11 +19,13 @@ const soldatsRouter = require('./routes/soldats');
 const missionsRouter = require('./routes/missions');
 const formationsRouter = require('./routes/formations');
 const unitesRouter = require('./routes/unites');
+const alertsRouter = require('./routes/alerts');
 
 app.use('/api/soldats', soldatsRouter);
 app.use('/api/missions', missionsRouter);
 app.use('/api/formations', formationsRouter);
 app.use('/api/unites', unitesRouter);
+app.use('/api/alerts', alertsRouter);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
