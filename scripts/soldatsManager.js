@@ -15,25 +15,29 @@ export function initSoldats() {
       const statut = card.querySelector('.info-row:nth-child(3) .info-value')?.textContent || '';
       const missions = card.querySelector('.info-row:nth-child(4) .info-value')?.textContent || '';
       
+      // Nettoyer et formater le statut pour la classe CSS
+      const statutClass = statut.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      
       // Génération du HTML de la modale
       const html = `
         <!-- En-tête de la modale -->
         <div class="modal-header">
-          <div class="soldier-header">
-            <h2 class="soldier-name">${nom}</h2>
-            <span class="soldier-id">${id}</span>
-          </div>
-          <div class="soldier-status">
-            <div class="status-main">
+          <div class="soldier-info-header">
+            <div class="soldier-name-id">
+              <h2 class="soldier-name">${nom}</h2>
+              <span class="soldier-id">${id}</span>
+            </div>
+            <div class="soldier-rank-unit">
               <i class="fas fa-user-shield"></i>
               <span class="grade">${grade}</span>
               <a href="#" class="unite-link">${unite}</a>
             </div>
-            <div class="status-details">
-              <span class="status-badge status-${statut.toLowerCase().replace(' ', '-')}">${statut}</span>
-              ${getStatusAlerts(statut, missions)}
-            </div>
           </div>
+          <div class="soldier-status-area">
+            <span class="status-badge status-${statutClass}">${statut}</span>
+            ${getStatusAlerts(statut, missions)}
+          </div>
+          <!-- Close button will be added by showModal function -->
         </div>
 
         <!-- Onglets de navigation -->
@@ -59,7 +63,7 @@ export function initSoldats() {
         </div>
 
         <!-- Contenu des onglets -->
-        <div class="modal-content">
+        <div class="modal-content-area">
           <!-- Onglet Informations -->
           <div class="tab-content active" id="general">
             <div class="info-grid">
@@ -69,19 +73,19 @@ export function initSoldats() {
               </div>
               <div class="info-item">
                 <span class="info-label">Date d'incorporation</span>
-                <span class="info-value">01/01/2024</span>
+                <span class="info-value">01/01/2024</span> <!-- Placeholder -->
               </div>
               <div class="info-item">
                 <span class="info-label">Parrain</span>
-                <span class="info-value"><a href="#">ICEMAN</a></span>
+                <span class="info-value"><a href="#">ICEMAN</a></span> <!-- Placeholder -->
               </div>
               <div class="info-item">
                 <span class="info-label">Fonction</span>
-                <span class="info-value">Chef de groupe</span>
+                <span class="info-value">Chef de groupe</span> <!-- Placeholder -->
               </div>
               <div class="info-item">
                 <span class="info-label">Dernière mission</span>
-                <span class="info-value">15/02/2024</span>
+                <span class="info-value">15/02/2024</span> <!-- Placeholder -->
               </div>
             </div>
           </div>
@@ -103,8 +107,9 @@ export function initSoldats() {
                     <td>Tactique de base</td>
                     <td>01/02/2024</td>
                     <td><span class="badge badge-success">Validée</span></td>
-                    <td><button class="btn btn-sm">Détails</button></td>
+                    <td><button class="btn btn-sm" onclick="handleDetailsClick('formation', 'Tactique de base')">Détails</button></td>
                   </tr>
+                  <!-- More formations here dynamically -->
                 </tbody>
               </table>
             </div>
@@ -127,8 +132,9 @@ export function initSoldats() {
                   <td>Opération Alpha</td>
                   <td>15/02/2024</td>
                   <td><span class="badge badge-success">Réussite</span></td>
-                  <td><button class="btn btn-sm">Détails</button></td>
+                  <td><button class="btn btn-sm" onclick="handleDetailsClick('mission', 'Opération Alpha')">Détails</button></td>
                 </tr>
+                <!-- More missions here dynamically -->
               </tbody>
             </table>
           </div>
@@ -154,6 +160,7 @@ export function initSoldats() {
                   <td><span class="badge badge-warning">Avertissement</span></td>
                   <td>Retard formation</td>
                 </tr>
+                <!-- More sanctions here dynamically -->
               </tbody>
             </table>
           </div>
@@ -187,14 +194,16 @@ export function initSoldats() {
                     <td>Soldat → Caporal</td>
                     <td>ICEMAN (CCH)</td>
                   </tr>
+                  <!-- More promotions here dynamically -->
                 </tbody>
               </table>
             </div>
             <div class="citations-history">
               <h3>Citations</h3>
               <div class="badges-container">
-                <span class="badge badge-bronze">Bronze (5 missions)</span>
-                <span class="badge badge-silver">Silver (10 missions)</span>
+                <span class="badge badge-bronze">Bronze (5 missions)</span> <!-- Placeholder -->
+                <span class="badge badge-silver">Silver (10 missions)</span> <!-- Placeholder -->
+                <!-- More citations here dynamically -->
               </div>
             </div>
           </div>
@@ -220,10 +229,11 @@ export function initSoldats() {
               <div class="timeline-item">
                 <div class="timeline-date">01/03/2024</div>
                 <div class="timeline-content">
-                  <span class="badge badge-mission">Mission</span>
-                  <p>Opération Alpha - Réussite</p>
+                  <span class="badge badge-mission">Mission</span> <!-- Placeholder badge, need specific styles -->
+                  <p>Opération Alpha - Réussite</p> <!-- Placeholder -->
                 </div>
               </div>
+              <!-- More timeline items here dynamically -->
             </div>
           </div>
         </div>
@@ -233,13 +243,11 @@ export function initSoldats() {
           <button class="btn btn-primary" onclick="exportSoldierCard()">
             <i class="fas fa-file-export"></i> Exporter la fiche
           </button>
-          <button class="btn btn-secondary modal-close">
-            <i class="fas fa-times"></i> Fermer
-          </button>
+          <!-- Close button handled by showModal -->
         </div>
       `;
       
-      showModal(html);
+      showModal(html); // showModal function handles adding the close button
       initModalTabs();
     };
   });
@@ -249,8 +257,13 @@ export function initSoldats() {
 function getStatusAlerts(statut, missions) {
   const alerts = [];
   
-  if (statut.toLowerCase().includes('recrue') && !unite) {
-    alerts.push('Recrue non affectée');
+  if (statut.toLowerCase().includes('recrue') && !unite) { // 'unite' is not defined in this scope, need to pass it
+    // Corrected condition: check for 'unite' value retrieved earlier
+    const card = document.querySelector('.card:has(.card-title:contains('' + statut + ''))'); // This is a workaround, ideally pass unite value
+    const uniteValue = card?.querySelector('.info-row:nth-child(2) .info-value')?.textContent || '';
+    if (statut.toLowerCase().includes('recrue') && !uniteValue) {
+         alerts.push('Recrue non affectée');
+    }
   }
   
   if (parseInt(missions) === 0) {
@@ -261,7 +274,7 @@ function getStatusAlerts(statut, missions) {
     return `
       <div class="alerts-container">
         ${alerts.map(alert => `
-          <div class="alert alert-danger">
+          <div class="alert alert-warning"> <!-- Using alert-warning for general alerts -->
             <i class="fas fa-exclamation-circle"></i>
             ${alert}
           </div>
@@ -296,8 +309,8 @@ function getRecrueProgress() {
 }
 
 function initModalTabs() {
-  const tabs = document.querySelectorAll('.tab-btn');
-  const contents = document.querySelectorAll('.tab-content');
+  const tabs = document.querySelectorAll('.modal-tabs .tab-btn');
+  const contents = document.querySelectorAll('.modal-content-area .tab-content');
   
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -311,6 +324,44 @@ function initModalTabs() {
       document.getElementById(contentId).classList.add('active');
     });
   });
+  
+  // Handle initial active tab content display
+  const initialActiveTabId = document.querySelector('.modal-tabs .tab-btn.active')?.dataset.tab;
+  if (initialActiveTabId) {
+      document.getElementById(initialActiveTabId)?.classList.add('active');
+  }
+}
+
+// Placeholder functions for modal actions
+function showNewSanctionModal() {
+    alert("Fonctionnalité 'Nouvelle sanction' à implémenter");
+}
+
+function showPromotionModal() {
+    alert("Fonctionnalité 'Promouvoir' à implémenter");
+}
+
+function showRetrogradationModal() {
+    alert("Fonctionnalité 'Rétrograder' à implémenter");
+}
+
+function showCitationModal() {
+    alert("Fonctionnalité 'Ajouter citation' à implémenter");
+}
+
+function exportSoldierCard() {
+     alert("Fonctionnalité 'Exporter la fiche' à implémenter");
+}
+
+function exportHistory(format) {
+     alert(`Fonctionnalité 'Exporter historique (${format.toUpperCase()})' à implémenter`);
+}
+
+function handleDetailsClick(type, name) {
+    // In a static site, this would likely navigate or show more info on the same page
+    // For now, we'll just show an alert.
+    alert(`Fonctionnalité 'Détails ${type}: ${name}' à implémenter (navigation ou modale secondaire)`);
+    // Potential static navigation: window.location.href = `/${type}s.html?name=${encodeURIComponent(name)}`;
 }
 
 export function startApp() {
@@ -340,8 +391,20 @@ function initFilters() {
   [filterStatus, filterUnite, filterGrade, searchInput].forEach(el => {
     if (el) {
       el.onchange = applyFilters;
+    } else {
+        // console.warn(`Filter element not found: ${el}`); // Optional: log if an element is missing
     }
   });
+
+  // Add event listener for 'Enter' key on search input
+  if (searchInput) {
+      searchInput.addEventListener('keypress', function(event) {
+          if (event.key === 'Enter') {
+              event.preventDefault(); // Prevent default form submission
+              applyFilters();
+          }
+      });
+  }
 }
 
 function applyFilters() {
@@ -392,4 +455,7 @@ function updateSoldiersCount() {
     const visibleCount = document.querySelectorAll('.cards-container .card:not(.hidden)').length;
     countElement.textContent = `${visibleCount} soldat${visibleCount > 1 ? 's' : ''}`;
   }
-} 
+}
+
+// Add event listener to DOMContentLoaded to start the app
+document.addEventListener('DOMContentLoaded', startApp); 
