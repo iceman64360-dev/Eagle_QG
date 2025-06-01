@@ -398,13 +398,14 @@ input:focus, select:focus, textarea:focus {
   background-color: #1a1a1a;
   border: 2px solid #ffbf00;
   border-radius: 5px;
-  width: 90%;
-  max-width: 1200px;
+  width: 95%;
+  max-width: 1300px;
   max-height: 95vh;
   overflow-y: auto;
   box-shadow: 0 0 20px rgba(255, 191, 0, 0.3);
   animation: modalFadeIn 0.3s ease-out;
   position: relative;
+  padding: 2.5rem;
 }
 
 @keyframes modalFadeIn {
@@ -1019,55 +1020,56 @@ footer::before {
 
 .modal-header {
   background-color: var(--dark-bg);
-  padding: 1.5rem;
+  padding: 1.5rem 0;
   border-bottom: 2px solid var(--gold);
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .soldier-header {
   display: flex;
   align-items: baseline;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .soldier-name {
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin: 0;
   color: var(--gold);
 }
 
 .soldier-id {
-  font-size: 1rem;
-  color: rgba(255, 191, 0, 0.7);
+  font-size: 1.1rem;
+  color: rgba(255, 191, 0, 0.8);
 }
 
 .soldier-status {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 1rem;
 }
 
 .status-main {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .status-main i {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: var(--gold);
 }
 
 .grade {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
 }
 
 .unite-link {
   color: var(--gold);
   text-decoration: none;
-  padding: 0.25rem 0.5rem;
+  padding: 0.3rem 0.7rem;
   border: 1px solid var(--gold);
   border-radius: 4px;
   transition: all 0.2s;
@@ -1081,31 +1083,31 @@ footer::before {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 /* Onglets */
 .modal-tabs {
   display: flex;
-  gap: 0.5rem;
-  padding: 0 1.5rem;
+  gap: 1rem;
+  padding: 0 2.5rem;
   border-bottom: 1px solid rgba(255, 191, 0, 0.3);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .tab-btn {
-  padding: 0.75rem 1.5rem;
+  padding: 0.8rem 1.8rem;
   background: none;
   border: none;
   color: rgba(255, 191, 0, 0.7);
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.2s;
   position: relative;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .tab-btn:hover {
@@ -1129,7 +1131,7 @@ footer::before {
 /* Contenu des onglets */
 .tab-content {
   display: none;
-  padding: 0 1.5rem;
+  padding: 0 2.5rem;
 }
 
 .tab-content.active {
@@ -1140,12 +1142,12 @@ footer::before {
 .data-table {
   width: 100%;
   border-collapse: collapse;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
 }
 
 .data-table th,
 .data-table td {
-  padding: 0.75rem;
+  padding: 1rem;
   text-align: left;
   border-bottom: 1px solid rgba(255, 191, 0, 0.2);
 }
@@ -1160,10 +1162,35 @@ footer::before {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
+/* Sections d'information dans l'onglet général */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.info-label {
+  font-weight: 600;
+  color: rgba(255, 191, 0, 0.8);
+  font-size: 0.9rem;
+}
+
+.info-value {
+  font-size: 1rem;
+  color: #fff;
+}
+
 /* Progression recrue */
 .recrue-progress {
-  margin-top: 2rem;
-  padding: 1.5rem;
+  margin-top: 3rem;
+  padding: 2rem;
   background-color: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 191, 0, 0.3);
   border-radius: 4px;
@@ -1172,36 +1199,24 @@ footer::before {
 .progress-steps {
   display: flex;
   justify-content: space-between;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   position: relative;
-}
-
-.progress-steps::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: rgba(255, 191, 0, 0.3);
-  transform: translateY(-50%);
-  z-index: 1;
 }
 
 .progress-step {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   position: relative;
   z-index: 2;
   background-color: var(--dark-bg);
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 }
 
 .progress-step i {
-  font-size: 1.5rem;
-  color: rgba(255, 191, 0, 0.3);
+  font-size: 1.8rem;
+  color: rgba(255, 191, 0, 0.4);
 }
 
 .progress-step.completed i {
@@ -1209,19 +1224,19 @@ footer::before {
 }
 
 .progress-step span {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* Timeline */
 .timeline {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 }
 
 .timeline-item {
   position: relative;
-  padding-left: 2rem;
-  padding-bottom: 1.5rem;
+  padding-left: 2.5rem;
+  padding-bottom: 2rem;
   border-left: 2px solid rgba(255, 191, 0, 0.3);
 }
 
@@ -1241,66 +1256,67 @@ footer::before {
 }
 
 .timeline-date {
-  font-size: 0.8rem;
-  color: rgba(255, 191, 0, 0.7);
-  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: rgba(255, 191, 0, 0.8);
+  margin-bottom: 0.75rem;
 }
 
 .timeline-content {
   background-color: rgba(0, 0, 0, 0.3);
-  padding: 1rem;
+  padding: 1.2rem;
   border-radius: 4px;
   border: 1px solid rgba(255, 191, 0, 0.2);
 }
 
 /* Badges de citation */
-.badge-bronze {
-  background-color: rgba(205, 127, 50, 0.2);
-  color: #cd7f32;
-  border: 1px solid #cd7f32;
+.badges-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
 }
 
-.badge-silver {
-  background-color: rgba(192, 192, 192, 0.2);
-  color: #c0c0c0;
-  border: 1px solid #c0c0c0;
-}
-
-.badge-gold {
-  background-color: rgba(255, 215, 0, 0.2);
-  color: #ffd700;
-  border: 1px solid #ffd700;
+.badge-bronze, .badge-silver, .badge-gold {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
 }
 
 /* Actions de la modale */
 .modal-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 1rem;
-  padding: 1.5rem;
+  gap: 1.5rem;
+  padding: 2rem 2.5rem 0;
   border-top: 1px solid rgba(255, 191, 0, 0.3);
-  margin-top: 1.5rem;
+  margin-top: 2.5rem;
 }
 
 /* Filtres */
 .filter-select {
-  padding: 0.5rem;
+  padding: 0.6rem;
   background-color: rgba(0, 0, 0, 0.3);
   border: 1px solid var(--gold);
   color: var(--gold);
   font-family: inherit;
   border-radius: 4px;
+  font-size: 0.9rem;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
+  .modal-content {
+    padding: 1.5rem;
+  }
+
   .modal-tabs {
-    flex-wrap: wrap;
+    padding: 0 1.5rem;
+    gap: 0.75rem;
   }
   
   .tab-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+    gap: 0.5rem;
   }
   
   .soldier-status {
@@ -1331,321 +1347,40 @@ footer::before {
     text-align: left;
     padding-left: 2rem;
   }
-}
 
-/* Styles pour la modale des soldats */
-.modal-header {
-  background-color: var(--dark-bg);
-  padding: 1.5rem;
-  border-bottom: 2px solid var(--gold);
-  margin-bottom: 1rem;
-}
-
-.soldier-header {
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.soldier-name {
-  font-size: 2rem;
-  margin: 0;
-  color: var(--gold);
-}
-
-.soldier-id {
-  font-size: 1rem;
-  color: rgba(255, 191, 0, 0.7);
-}
-
-.soldier-status {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.status-main {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.status-main i {
-  font-size: 1.5rem;
-  color: var(--gold);
-}
-
-.grade {
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.unite-link {
-  color: var(--gold);
-  text-decoration: none;
-  padding: 0.25rem 0.5rem;
-  border: 1px solid var(--gold);
-  border-radius: 4px;
-  transition: all 0.2s;
-}
-
-.unite-link:hover {
-  background-color: rgba(255, 191, 0, 0.1);
-}
-
-.status-details {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.5rem;
-}
-
-/* Onglets */
-.modal-tabs {
-  display: flex;
-  gap: 0.5rem;
-  padding: 0 1.5rem;
-  border-bottom: 1px solid rgba(255, 191, 0, 0.3);
-  margin-bottom: 1.5rem;
-}
-
-.tab-btn {
-  padding: 0.75rem 1.5rem;
-  background: none;
-  border: none;
-  color: rgba(255, 191, 0, 0.7);
-  font-family: inherit;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.tab-btn:hover {
-  color: var(--gold);
-}
-
-.tab-btn.active {
-  color: var(--gold);
-}
-
-.tab-btn.active::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--gold);
-}
-
-/* Contenu des onglets */
-.tab-content {
-  display: none;
-  padding: 0 1.5rem;
-}
-
-.tab-content.active {
-  display: block;
-}
-
-/* Tableaux */
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 0;
-}
-
-.data-table th,
-.data-table td {
-  padding: 0.75rem;
-  text-align: left;
-  border-bottom: 1px solid rgba(255, 191, 0, 0.2);
-}
-
-.data-table th {
-  background-color: rgba(0, 0, 0, 0.3);
-  color: var(--gold);
-  font-weight: 600;
-}
-
-.data-table tr:hover {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-/* Progression recrue */
-.recrue-progress {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  background-color: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 191, 0, 0.3);
-  border-radius: 4px;
-}
-
-.progress-steps {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-  position: relative;
-}
-
-.progress-steps::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: rgba(255, 191, 0, 0.3);
-  transform: translateY(-50%);
-  z-index: 1;
-}
-
-.progress-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  position: relative;
-  z-index: 2;
-  background-color: var(--dark-bg);
-  padding: 0 1rem;
-}
-
-.progress-step i {
-  font-size: 1.5rem;
-  color: rgba(255, 191, 0, 0.3);
-}
-
-.progress-step.completed i {
-  color: var(--gold);
-}
-
-.progress-step span {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Timeline */
-.timeline {
-  margin-top: 1.5rem;
-}
-
-.timeline-item {
-  position: relative;
-  padding-left: 2rem;
-  padding-bottom: 1.5rem;
-  border-left: 2px solid rgba(255, 191, 0, 0.3);
-}
-
-.timeline-item:last-child {
-  border-left: none;
-}
-
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -0.5rem;
-  top: 0;
-  width: 1rem;
-  height: 1rem;
-  background-color: var(--gold);
-  border-radius: 50%;
-}
-
-.timeline-date {
-  font-size: 0.8rem;
-  color: rgba(255, 191, 0, 0.7);
-  margin-bottom: 0.5rem;
-}
-
-.timeline-content {
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 1rem;
-  border-radius: 4px;
-  border: 1px solid rgba(255, 191, 0, 0.2);
-}
-
-/* Badges de citation */
-.badge-bronze {
-  background-color: rgba(205, 127, 50, 0.2);
-  color: #cd7f32;
-  border: 1px solid #cd7f32;
-}
-
-.badge-silver {
-  background-color: rgba(192, 192, 192, 0.2);
-  color: #c0c0c0;
-  border: 1px solid #c0c0c0;
-}
-
-.badge-gold {
-  background-color: rgba(255, 215, 0, 0.2);
-  color: #ffd700;
-  border: 1px solid #ffd700;
-}
-
-/* Actions de la modale */
-.modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  padding: 1.5rem;
-  border-top: 1px solid rgba(255, 191, 0, 0.3);
-  margin-top: 1.5rem;
-}
-
-/* Filtres */
-.filter-select {
-  padding: 0.5rem;
-  background-color: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  font-family: inherit;
-  border-radius: 4px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .modal-tabs {
-    flex-wrap: wrap;
-  }
-  
-  .tab-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-  }
-  
-  .soldier-status {
-    flex-direction: column;
-    align-items: flex-start;
+  .info-grid {
+    grid-template-columns: 1fr;
     gap: 1rem;
+    margin-bottom: 1.5rem;
   }
-  
-  .status-details {
-    align-items: flex-start;
+
+  .data-table th,
+  .data-table td {
+    padding: 0.75rem;
   }
-  
-  .progress-steps {
-    flex-direction: column;
-    gap: 1rem;
+
+  .recrue-progress {
+    padding: 1.5rem;
   }
-  
-  .progress-steps::before {
-    width: 2px;
-    height: 100%;
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
-  }
-  
-  .progress-step {
-    width: 100%;
-    text-align: left;
+
+  .timeline-item {
     padding-left: 2rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .timeline-content {
+    padding: 1rem;
+  }
+
+  .modal-actions {
+    padding: 1.5rem;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .modal-actions .btn {
+    width: 100%;
   }
 }
