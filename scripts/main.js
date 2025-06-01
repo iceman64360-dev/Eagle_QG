@@ -1,13 +1,12 @@
 // Point d'entrée principal de l'application
-import { initData } from './dataManager.js';
+// import { initData } from './dataManager.js'; // <-- supprimé pour version statique
 import { loadPage } from './router.js';
 import './utils.js';
 
 // Initialisation de l'application
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    // Initialiser les données
-    await initData();
+    // await initData(); // <-- supprimé pour version statique
     
     // Configurer les liens de navigation pour éviter le rechargement complet
     document.querySelectorAll('nav .nav-link').forEach(link => {
