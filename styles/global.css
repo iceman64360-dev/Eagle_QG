@@ -365,74 +365,44 @@ input:focus, select:focus, textarea:focus {
 
 /* Modals */
 .modal-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
+  position: fixed !important;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.7) !important;
+  z-index: 99999 !important;
+  display: flex !important;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  -webkit-backdrop-filter: blur(3px);
-  backdrop-filter: blur(3px);
+  opacity: 1 !important;
 }
 
 .modal {
-  background-color: var(--dark-bg);
-  border: 2px solid var(--gold);
-  border-radius: 4px;
-  width: 90%;
-  max-width: 500px;
-  max-height: 90vh;
-  overflow-y: auto;
+  background: #222 !important;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+  border-radius: 8px;
+  min-width: 300px;
+  max-width: 90vw;
+  padding: 2em;
   position: relative;
-  animation: modalAppear 0.3s ease;
+  box-shadow: 0 0 20px #000;
+  z-index: 100000 !important;
+  opacity: 1 !important;
 }
 
-@keyframes modalAppear {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.modal-header {
-  padding: 1rem;
-  border-bottom: 1px solid var(--dark-gold);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.modal-title {
-  margin: 0;
-  font-size: 1.2rem;
+.modal-content {
+  color: #fff !important;
 }
 
 .modal-close {
+  color: #fff !important;
+  font-size: 2em;
   background: none;
   border: none;
-  color: var(--gold);
-  font-size: 1.5rem;
+  position: absolute;
+  top: 1em;
+  right: 1em;
   cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.modal-close:hover {
-  color: white;
-  text-shadow: 0 0 5px var(--gold);
-}
-
-.modal-body {
-  padding: 1rem;
-}
-
-.modal-footer {
-  padding: 1rem;
-  border-top: 1px solid var(--dark-gold);
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
+  z-index: 100001 !important;
 }
 
 /* Toast notifications */
@@ -1790,7 +1760,7 @@ button:focus, .btn:focus {
   outline: 2px solid var(--gold);
 }
 
-/* Pastilles d’alerte */
+/* Pastilles d'alerte */
 .badge-red { background: #dc2626; color: #fff; border-radius: 0.25rem; font-size: 0.8em; padding: 0.2em 0.6em; }
 .badge-blue { background: #2563eb; color: #fff; border-radius: 0.25rem; font-size: 0.8em; padding: 0.2em 0.6em; }
 .badge-green { background: #22c55e; color: #fff; border-radius: 0.25rem; font-size: 0.8em; padding: 0.2em 0.6em; }
