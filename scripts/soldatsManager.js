@@ -35,7 +35,7 @@ export function initSoldats() {
           </div>
           <div class="soldier-status-area">
             <span class="status-badge status-${statutClass}">${statut}</span>
-            ${getStatusAlerts(statut, missions)}
+            ${getStatusAlerts(statut, missions, unite)}
           </div>
           <!-- Close button will be added by showModal function -->
         </div>
@@ -254,16 +254,11 @@ export function initSoldats() {
 }
 
 // Fonctions utilitaires
-function getStatusAlerts(statut, missions) {
+function getStatusAlerts(statut, missions, uniteValue) {
   const alerts = [];
   
-  if (statut.toLowerCase().includes('recrue') && !unite) { // 'unite' is not defined in this scope, need to pass it
-    // Corrected condition: check for 'unite' value retrieved earlier
-    const card = document.querySelector('.card:has(.card-title:contains('' + statut + ''))'); // This is a workaround, ideally pass unite value
-    const uniteValue = card?.querySelector('.info-row:nth-child(2) .info-value')?.textContent || '';
-    if (statut.toLowerCase().includes('recrue') && !uniteValue) {
-         alerts.push('Recrue non affectée');
-    }
+  if (statut.toLowerCase().includes('recrue') && !uniteValue) {
+       alerts.push('Recrue non affectée');
   }
   
   if (parseInt(missions) === 0) {
