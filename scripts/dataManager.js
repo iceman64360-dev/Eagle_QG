@@ -16,14 +16,31 @@ export async function initData() {
     { type: 'missions', path: '/data/test/missions.json' },
     { type: 'formations', path: '/data/test/formations.json' }
   ];
+  
   for (const f of files) {
     try {
       const res = await fetch(f.path);
       if (res.ok) {
         const list = await res.json();
         dataStore[f.type] = list;
+        console.log(`[DataManager] Données ${f.type} chargées:`, list.length, 'éléments');
+      } else {
+        console.error(`[DataManager] Erreur lors du chargement de ${f.path}:`, res.status);
+        // En cas d'erreur, essayer de charger depuis l'API
+        try {
+          const apiRes = await fetch(`${API_BASE_URL}/${f.type}`);
+          if (apiRes.ok) {
+            const apiList = await apiRes.json();
+            dataStore[f.type] = apiList;
+            console.log(`[DataManager] Données ${f.type} chargées depuis l'API:`, apiList.length, 'éléments');
+          }
+        } catch (apiError) {
+          console.error(`[DataManager] Erreur lors du chargement depuis l'API pour ${f.type}:`, apiError);
+        }
       }
-    } catch (e) { /* ignore */ }
+    } catch (e) {
+      console.error(`[DataManager] Erreur lors du chargement de ${f.path}:`, e);
+    }
   }
 }
 

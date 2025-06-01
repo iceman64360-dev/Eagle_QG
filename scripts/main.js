@@ -1,23 +1,39 @@
-// Point d’entrée principal pour Eagle Operator
-import { loadPage } from './router.js';
+// Point d'entrée principal de l'application
 import { initData } from './dataManager.js';
+import { loadPage } from './router.js';
 import './utils.js';
 
+// Initialisation de l'application
 document.addEventListener('DOMContentLoaded', async () => {
-  await initData();
-  // Gestion SPA universelle sur nav (empêche reload complet)
-  document.querySelectorAll('header nav a').forEach(link => {
-    link.addEventListener('click', function(e) {
-      const href = link.getAttribute('href');
-      if (/^\/pages\/.+\.html$/.test(href)) {
+  try {
+    // Initialiser les données
+    await initData();
+    
+    // Configurer les liens de navigation pour éviter le rechargement complet
+    document.querySelectorAll('nav .nav-link').forEach(link => {
+      link.addEventListener('click', (e) => {
         e.preventDefault();
-        // Convertit /pages/xxx.html en #xxx
-        const hash = '#' + href.replace(/^\/pages\//, '').replace(/\.html$/, '');
-        window.location.hash = hash;
-      }
+        const href = link.getAttribute('href');
+        if (href.startsWith('#')) {
+          window.location.hash = href;
+        }
+      });
     });
-  });
-  loadPage(window.location.hash || '#dashboard');
+    
+    // Charger la page par défaut ou celle du hash courant
+    const hash = window.location.hash || '#dashboard';
+    await loadPage(hash);
+    
+    console.log('[Main] Application initialisée');
+  } catch (error) {
+    console.error('[Main] Erreur lors de l\'initialisation:', error);
+    document.getElementById('app-root').innerHTML = `
+      <div class="alert alert-danger">
+        <i class="fas fa-exclamation-triangle"></i>
+        Une erreur est survenue lors de l'initialisation de l'application.
+      </div>
+    `;
+  }
 });
 
 window.addEventListener('hashchange', () => {

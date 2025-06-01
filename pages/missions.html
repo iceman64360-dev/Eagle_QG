@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Missions - Eagle Operator</title>
   <link href="../styles/global.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -232,5 +233,13 @@
   <footer>
     <a href="dashboard.html">Dashboard</a>
   </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="../scripts/dataManager.js"></script>
+  <script type="module" src="../scripts/modalManager.js"></script>
+  <script type="module">
+    import { startApp } from '../scripts/modalManager.js';
+    document.addEventListener('DOMContentLoaded', startApp);
+  </script>
 </body>
 </html>

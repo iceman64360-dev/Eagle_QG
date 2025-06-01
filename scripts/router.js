@@ -1,4 +1,5 @@
 // Routage SPA simple basé sur le hash
+import { initNewPage } from './pageManager.js';
 
 const ROUTES = {
   '#dashboard': 'pages/dashboard.html',
@@ -22,11 +23,16 @@ export async function loadPage(routeHash) {
     const resp = await fetch(page);
     if (!resp.ok) throw new Error(`Erreur chargement ${page}`);
     const html = await resp.text();
+    
     // Extraire le <main> de la page cible pour l'injecter dans #app-root
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
     const main = doc.querySelector('main');
     document.getElementById('app-root').innerHTML = main ? main.innerHTML : html;
+    
+    // Initialiser la nouvelle page
+    initNewPage(routeHash);
+    
     console.log(`[Router] Page chargée: ${routeHash}`);
     
     // Ajouter un effet de transition

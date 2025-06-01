@@ -219,5 +219,13 @@
       </section>
     </div>
   </main>
+
+  <!-- Scripts -->
+  <script type="module" src="../scripts/dataManager.js"></script>
+  <script type="module" src="../scripts/modalManager.js"></script>
+  <script type="module">
+    import { startApp } from '../scripts/modalManager.js';
+    document.addEventListener('DOMContentLoaded', startApp);
+  </script>
 </body>
 </html>

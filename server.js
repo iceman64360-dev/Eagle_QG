@@ -14,16 +14,26 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// Servir les fichiers statiques
+app.use(express.static(path.join(__dirname)));
+
 // Routes
 const soldatsRouter = require('./routes/soldats');
 const missionsRouter = require('./routes/missions');
 const formationsRouter = require('./routes/formations');
 const unitesRouter = require('./routes/unites');
+const alertsRouter = require('./routes/alerts');
 
 app.use('/api/soldats', soldatsRouter);
 app.use('/api/missions', missionsRouter);
 app.use('/api/formations', formationsRouter);
 app.use('/api/unites', unitesRouter);
+app.use('/api/alerts', alertsRouter);
+
+// Route racine
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -40,7 +50,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Serveur démarré sur le port ${PORT}`);
-}); 
   console.log(`Serveur démarré sur le port ${PORT}`);
 }); 
