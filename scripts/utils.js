@@ -24,3 +24,28 @@ export async function fetchData(name) {
     throw err;
   }
 }
+
+/**
+ * Affiche une modale universelle avec le contenu HTML fourni
+ * @param {string} contentHtml
+ */
+export function showModal(contentHtml) {
+  // Supprime toute modale existante
+  document.querySelectorAll('.modal-bg').forEach(e => e.remove());
+
+  // Crée le fond de la modale
+  const bg = document.createElement('div');
+  bg.className = 'modal-bg';
+  bg.style = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);z-index:9999;display:flex;align-items:center;justify-content:center;';
+  bg.innerHTML = `
+    <div class="modal" style="background:#222;padding:2em;border-radius:8px;min-width:300px;max-width:90vw;position:relative;">
+      <button class="modal-close" style="position:absolute;top:1em;right:1em;font-size:2em;background:none;border:none;color:#fff;cursor:pointer;">&times;</button>
+      <div class="modal-content">${contentHtml}</div>
+    </div>
+  `;
+  document.body.appendChild(bg);
+
+  // Fermer la modale
+  bg.querySelector('.modal-close').onclick = () => bg.remove();
+  bg.onclick = e => { if (e.target === bg) bg.remove(); };
+}
