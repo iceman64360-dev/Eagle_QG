@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soldats - Eagle Operator</title>
+  <link href="../styles/global.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <img src="../assets/logos/logo.png" alt="Logo Eagle Company" class="h-16">
+    <h1><i class="fas fa-user-shield"></i> Gestion des soldats</h1>
+  </header>
+  <main>
+    <div class="app-container">
+      <!-- Section filtres -->
+      <section class="soldats-section" id="filtres">
+        <h2><i class="fas fa-filter"></i> Filtres</h2>
+        <div class="filters-container">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="filter-status">Statut</label>
+              <select id="filter-status" class="form-control">
+                <option value="">Tous</option>
+                <option value="actif">Actif</option>
+                <option value="en formation">En formation</option>
+                <option value="inactif">Inactif</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="filter-unite">Unité</label>
+              <select id="filter-unite" class="form-control">
+                <option value="">Toutes</option>
+                <option value="Alpha 1-1">Alpha 1-1</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="filter-grade">Grade</label>
+              <select id="filter-grade" class="form-control">
+                <option value="">Tous</option>
+                <option value="Caporal-chef">Caporal-chef</option>
+                <option value="Caporal">Caporal</option>
+                <option value="Soldat Première Classe">Soldat Première Classe</option>
+                <option value="Soldat">Soldat</option>
+                <option value="Recrue">Recrue</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="search">Recherche</label>
+              <input type="text" id="search" class="form-control" placeholder="ID, Pseudo ou Grade...">
+            </div>
+            
+            <div class="form-actions">
+              <button id="btn-search" class="btn btn-primary"><i class="fas fa-search"></i> Rechercher</button>
+              <button id="btn-reset" class="btn"><i class="fas fa-undo"></i> Réinitialiser</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Actions bar -->
+      <div class="actions-bar">
+        <button id="btn-add-soldat" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter un soldat</button>
+        <div class="info-display">
+          <span id="soldats-count" class="badge badge-warning">9 soldats</span>
+        </div>
+      </div>
+      
+      <!-- Liste des soldats -->
+      <section class="soldats-section" id="liste">
+        <h2><i class="fas fa-list"></i> Liste des soldats</h2>
+        <div class="cards-container">
+          <!-- Soldat 1 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">ICEMAN</h3>
+              <span class="badge badge-warning">EGC-001</span>
+            </div>
+            <div class="card-content">
+              <div class="soldier-info">
+                <div class="info-row">
+                  <span class="info-label">Grade:</span>
+                  <span class="info-value">Caporal-chef</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Unité:</span>
+                  <span class="info-value">Alpha 1-1</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Statut:</span>
+                  <span class="info-value status-active">Actif</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Missions:</span>
+                  <span class="info-value">7</span>
+                </div>
+              </div>
+              <div class="badges-container">
+                <span class="badge badge-success">Tactique de base</span>
+                <span class="badge badge-success">Bronze</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm"><i class="fas fa-eye"></i> Détails</button>
+              <button class="btn btn-sm"><i class="fas fa-edit"></i> Modifier</button>
+            </div>
+          </div>
+          
+          <!-- Soldat 2 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">FURY</h3>
+              <span class="badge badge-warning">EGC-002</span>
+            </div>
+            <div class="card-content">
+              <div class="soldier-info">
+                <div class="info-row">
+                  <span class="info-label">Grade:</span>
+                  <span class="info-value">Caporal</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Unité:</span>
+                  <span class="info-value">Alpha 1-1</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Statut:</span>
+                  <span class="info-value status-active">Actif</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Missions:</span>
+                  <span class="info-value">4</span>
+                </div>
+              </div>
+              <div class="badges-container">
+                <span class="badge badge-success">Tir longue portée</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm"><i class="fas fa-eye"></i> Détails</button>
+              <button class="btn btn-sm"><i class="fas fa-edit"></i> Modifier</button>
+            </div>
+          </div>
+          
+          <!-- Soldat 3 -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">OLIVE</h3>
+              <span class="badge badge-warning">EGC-003</span>
+            </div>
+            <div class="card-content">
+              <div class="soldier-info">
+                <div class="info-row">
+                  <span class="info-label">Grade:</span>
+                  <span class="info-value">Soldat Première Classe</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Unité:</span>
+                  <span class="info-value">Alpha 1-1</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Statut:</span>
+                  <span class="info-value status-active">Actif</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Missions:</span>
+                  <span class="info-value">2</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm"><i class="fas fa-eye"></i> Détails</button>
+              <button class="btn btn-sm"><i class="fas fa-edit"></i> Modifier</button>
+            </div>
+          </div>
+          
+          <!-- Recrue -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">RECRUE1</h3>
+              <span class="badge badge-warning">EGC-007</span>
+            </div>
+            <div class="card-content">
+              <div class="soldier-info">
+                <div class="info-row">
+                  <span class="info-label">Grade:</span>
+                  <span class="info-value">Recrue</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Unité:</span>
+                  <span class="info-value">Alpha 1-1</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Statut:</span>
+                  <span class="info-value status-training">En formation</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Missions:</span>
+                  <span class="info-value">0</span>
+                </div>
+              </div>
+              <div class="badges-container">
+                <span class="badge badge-success">Tactique de base</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm"><i class="fas fa-eye"></i> Détails</button>
+              <button class="btn btn-sm"><i class="fas fa-edit"></i> Modifier</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="../scripts/modalManager.js" type="module"></script>
+  <script type="module">
+    import { startApp } from '../scripts/modalManager.js';
+    // Initialiser l'application au chargement de la page
+    document.addEventListener('DOMContentLoaded', () => {
+      startApp();
+    });
+  </script>
+  <footer>
+    <a href="dashboard.html">Dashboard</a>
+  </footer>
+
+  <!-- Modale détails soldat -->
+  <div id="modal-soldat" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title"><i class="fas fa-user-shield"></i> <span id="modal-soldat-nom">ICEMAN</span></h2>
+        <span class="badge badge-warning" id="modal-soldat-id">EGC-001</span>
+        <button class="modal-close" title="Fermer la modale"><i class="fas fa-times"></i><span class="sr-only">Fermer</span></button>
+      </div>
+      
+      <!-- Formulaire de création/édition -->
+      <form id="soldat-form" class="soldat-form">
+        <input type="hidden" name="id" id="soldat-id">
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="soldat-nom">Nom</label>
+            <input type="text" id="soldat-nom" name="nom" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="soldat-grade">Grade</label>
+            <select id="soldat-grade" name="grade" class="form-control" required>
+              <option value="">Sélectionner un grade</option>
+              <option value="Général">Général</option>
+              <option value="Colonel">Colonel</option>
+              <option value="Commandant">Commandant</option>
+              <option value="Capitaine">Capitaine</option>
+              <option value="Lieutenant">Lieutenant</option>
+              <option value="Sergent-chef">Sergent-chef</option>
+              <option value="Sergent">Sergent</option>
+              <option value="Caporal-chef">Caporal-chef</option>
+              <option value="Caporal">Caporal</option>
+              <option value="Soldat Première Classe">Soldat Première Classe</option>
+              <option value="Soldat">Soldat</option>
+              <option value="Recrue">Recrue</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="soldat-unite">Unité</label>
+            <input type="text" id="soldat-unite" name="unite" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="soldat-statut">Statut</label>
+            <select id="soldat-statut" name="statut" class="form-control" required>
+              <option value="Actif">Actif</option>
+              <option value="En mission">En mission</option>
+              <option value="En formation">En formation</option>
+              <option value="Blessé">Blessé</option>
+              <option value="Inactif">Inactif</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="soldat-missions">Nombre de missions</label>
+            <input type="number" id="soldat-missions" name="missions" class="form-control" min="0" value="0">
+          </div>
+          
+          <div class="form-group">
+            <label for="soldat-specialite">Spécialité</label>
+            <input type="text" id="soldat-specialite" name="specialite" class="form-control">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="soldat-notes">Notes</label>
+          <textarea id="soldat-notes" name="notes" class="form-control" rows="3"></textarea>
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Enregistrer</button>
+          <button type="button" class="btn btn-secondary" onclick="fermerModal()">Annuler</button>
+        </div>
+      </form>
+      
+      <!-- Formulaire de création/édition -->
+      <form id="soldat-form" class="soldat-form">
+        <input type="hidden" name="id" id="soldat-id">
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="soldat-nom">Nom</label>
+            <input type="text" id="soldat-nom" name="nom" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="soldat-grade">Grade</label>
+            <select id="soldat-grade" name="grade" class="form-control" required>
+              <option value="">Sélectionner un grade</option>
+              <option value="Général">Général</option>
+              <option value="Colonel">Colonel</option>
+              <option value="Commandant">Commandant</option>
+              <option value="Capitaine">Capitaine</option>
+              <option value="Lieutenant">Lieutenant</option>
+              <option value="Sergent-chef">Sergent-chef</option>
+              <option value="Sergent">Sergent</option>
+              <option value="Caporal-chef">Caporal-chef</option>
+              <option value="Caporal">Caporal</option>
+              <option value="Soldat Première Classe">Soldat Première Classe</option>
+              <option value="Soldat">Soldat</option>
+              <option value="Recrue">Recrue</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="soldat-unite">Unité</label>
+            <input type="text" id="soldat-unite" name="unite" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="soldat-statut">Statut</label>
+            <select id="soldat-statut" name="statut" class="form-control" required>
+              <option value="Actif">Actif</option>
+              <option value="En mission">En mission</option>
+              <option value="En formation">En formation</option>
+              <option value="Blessé">Blessé</option>
+              <option value="Inactif">Inactif</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="soldat-missions">Nombre de missions</label>
+            <input type="number" id="soldat-missions" name="missions" class="form-control" min="0" value="0">
+          </div>
+          
+          <div class="form-group">
+            <label for="soldat-specialite">Spécialité</label>
+            <input type="text" id="soldat-specialite" name="specialite" class="form-control">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="soldat-notes">Notes</label>
+          <textarea id="soldat-notes" name="notes" class="form-control" rows="3"></textarea>
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Enregistrer</button>
+          <button type="button" class="btn btn-secondary" onclick="fermerModal()">Annuler</button>
+        </div>
+      </form>
+      <div class="modal-body">
+        <div class="modal-section">
+          <h3><i class="fas fa-info-circle"></i> Informations personnelles</h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-label">Grade : </span>
+              <span class="info-value" id="modal-soldat-grade">Caporal-chef</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Statut : </span>
+              <span class="info-value" id="modal-soldat-statut">Actif</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Unité : </span>
+              <span class="info-value" id="modal-soldat-unite">Alpha 1-1</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Spécialité : </span>
+              <span class="info-value" id="modal-soldat-specialite">Tireur d'élite</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <h3><i class="fas fa-medal"></i> Compétences et formations</h3>
+          <div class="skills-container" id="modal-soldat-competences">
+            <div class="skill-item">
+              <span class="skill-name">Tir longue portée</span>
+              <div class="skill-bar">
+                <div class="skill-progress skill-85"></div>
+              </div>
+              <span class="skill-value">85%</span>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">Tactique de combat</span>
+              <div class="skill-bar">
+                <div class="skill-progress skill-70"></div>
+              </div>
+              <span class="skill-value">70%</span>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">Premiers secours</span>
+              <div class="skill-bar">
+                <div class="skill-progress skill-50"></div>
+              </div>
+              <span class="skill-value">50%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <h3><i class="fas fa-flag"></i> Missions</h3>
+          <div class="missions-list" id="modal-soldat-missions">
+            <div class="mission-item">
+              <span class="mission-name">EAGLE EYE</span>
+              <span class="mission-date">31/05/2025</span>
+              <span class="mission-status completed">Terminée</span>
+            </div>
+            <div class="mission-item">
+              <span class="mission-name">SHADOW GUARD</span>
+              <span class="mission-date">25/05/2025</span>
+              <span class="mission-status completed">Terminée</span>
+            </div>
+            <div class="mission-item">
+              <span class="mission-name">BLACKOUT</span>
+              <span class="mission-date">01/06/2025</span>
+              <span class="mission-status in-progress">En cours</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <h3><i class="fas fa-clipboard-list"></i> Notes</h3>
+          <div class="notes-container">
+            <textarea id="modal-soldat-notes" class="notes-textarea" disabled title="Notes sur le soldat" aria-label="Notes sur le soldat">Excellent tireur d'élite. A démontré des compétences exceptionnelles lors de la mission EAGLE EYE. Recommandé pour promotion au grade de Sergent.</textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-edit-soldat" class="btn btn-primary"><i class="fas fa-edit"></i> Modifier</button>
+        <button id="btn-close-modal" class="btn" onclick="fermerModal()"><i class="fas fa-times"></i> Fermer</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

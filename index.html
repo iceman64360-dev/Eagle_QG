@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eagle Operator</title>
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- HUD Corners for military tactical feel -->
+  <div class="hud-corner hud-corner-tl"></div>
+  <div class="hud-corner hud-corner-tr"></div>
+  <div class="hud-corner hud-corner-bl"></div>
+  <div class="hud-corner hud-corner-br"></div>
+  
+  <header>
+    <div class="logo-container">
+      <img src="/assets/logos/logo.png" alt="Eagle Company Logo">
+      <h1>Eagle Operator</h1>
+    </div>
+    <nav>
+      <a href="#dashboard" class="nav-link active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+      <a href="#soldats" class="nav-link"><i class="fas fa-user-shield"></i> Soldats</a>
+      <a href="#unites" class="nav-link"><i class="fas fa-users"></i> Unités</a>
+      <a href="#missions" class="nav-link"><i class="fas fa-flag"></i> Missions</a>
+      <a href="#formations" class="nav-link"><i class="fas fa-graduation-cap"></i> Formations</a>
+      <a href="#admin" class="nav-link"><i class="fas fa-cog"></i> Admin</a>
+    </nav>
+  </header>
+
+  <main>
+    <div id="app-root" class="container"></div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2025 Eagle Company | Plateforme tactique Eagle Operator</p>
+        <div class="footer-links">
+          <a href="#contact">Contact</a> | 
+          <a href="#support">Support</a> | 
+          <a href="#confidentialite">Confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="scripts/main.js" type="module" defer></script>
+</body>
+</html>

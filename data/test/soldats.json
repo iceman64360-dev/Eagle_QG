@@ -1,0 +1,101 @@
+[
+  {
+    "id": "EGC-001",
+    "pseudo": "ICEMAN",
+    "grade": "Caporal-chef",
+    "unite": "Alpha 1-1",
+    "statut": "actif",
+    "formations_suivies": ["Tactique de base"],
+    "missions_effectuees": 7,
+    "faits_d_armes": ["Sauvetage sous feu"],
+    "recompenses": ["Bronze"]
+  },
+  {
+    "id": "EGC-002",
+    "pseudo": "FURY",
+    "grade": "Caporal",
+    "unite": "Alpha 1-1",
+    "statut": "actif",
+    "formations_suivies": ["Tir longue portée"],
+    "missions_effectuees": 4,
+    "faits_d_armes": [],
+    "recompenses": []
+  },
+  {
+    "id": "EGC-003",
+    "pseudo": "OLIVE",
+    "grade": "Soldat Première Classe",
+    "unite": "Alpha 1-1",
+    "statut": "actif",
+    "formations_suivies": [],
+    "missions_effectuees": 2,
+    "faits_d_armes": [],
+    "recompenses": []
+  },
+  {
+    "id": "EGC-004",
+    "pseudo": "NICO",
+    "grade": "Soldat",
+    "unite": "Alpha 1-1",
+    "statut": "actif",
+    "formations_suivies": [],
+    "missions_effectuees": 1,
+    "faits_d_armes": [],
+    "recompenses": []
+  },
+  {
+    "id": "EGC-005",
+    "pseudo": "JACKAL",
+    "grade": "Soldat",
+    "unite": "Alpha 1-1",
+    "statut": "actif",
+    "formations_suivies": [],
+    "missions_effectuees": 1,
+    "faits_d_armes": [],
+    "recompenses": []
+  },
+  {
+    "id": "EGC-006",
+    "pseudo": "VIPER",
+    "grade": "Soldat",
+    "unite": "Alpha 1-1",
+    "statut": "actif",
+    "formations_suivies": [],
+    "missions_effectuees": 0,
+    "faits_d_armes": [],
+    "recompenses": []
+  },
+  {
+    "id": "EGC-007",
+    "pseudo": "RECRUE1",
+    "grade": "Recrue",
+    "unite": "Alpha 1-1",
+    "statut": "en formation",
+    "formations_suivies": ["Tactique de base"],
+    "missions_effectuees": 0,
+    "faits_d_armes": [],
+    "recompenses": []
+  },
+  {
+    "id": "EGC-008",
+    "pseudo": "RECRUE2",
+    "grade": "Recrue",
+    "unite": "Alpha 1-1",
+    "statut": "en formation",
+    "formations_suivies": [],
+    "missions_effectuees": 0,
+    "faits_d_armes": [],
+    "recompenses": []
+  },
+  {
+    "id": "EGC-009",
+    "pseudo": "RECRUE3",
+    "grade": "Recrue",
+    "unite": "",
+    "statut": "en formation",
+    "formations_suivies": [],
+    "missions_effectuees": 0,
+    "faits_d_armes": [],
+    "recompenses": []
+  }
+]

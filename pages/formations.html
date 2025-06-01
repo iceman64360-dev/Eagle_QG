@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formations - Eagle Operator</title>
+  <link href="../styles/global.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <img src="../assets/logos/logo.png" alt="Logo Eagle Company" class="h-16">
+    <h1><i class="fas fa-graduation-cap"></i> Gestion des formations</h1>
+  </header>
+  <main>
+    <div class="app-container">
+      <!-- Section filtres -->
+      <section class="missions-section" id="filtres">
+        <h2><i class="fas fa-filter"></i> Filtres</h2>
+        <div class="filters-container">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="filter-category">Catégorie</label>
+              <select id="filter-category" class="form-control">
+                <option value="">Toutes</option>
+                <option value="combat">Combat</option>
+                <option value="tactique">Tactique</option>
+                <option value="medical">Médical</option>
+                <option value="technique">Technique</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="filter-level">Niveau</label>
+              <select id="filter-level" class="form-control">
+                <option value="">Tous</option>
+                <option value="debutant">Débutant</option>
+                <option value="intermediaire">Intermédiaire</option>
+                <option value="avance">Avancé</option>
+                <option value="expert">Expert</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="filter-duration">Durée</label>
+              <select id="filter-duration" class="form-control">
+                <option value="">Toutes</option>
+                <option value="court">1-2 jours</option>
+                <option value="moyen">3-5 jours</option>
+                <option value="long">6+ jours</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="search">Recherche</label>
+              <input type="text" id="search" class="form-control" placeholder="Nom, code ou instructeur...">
+            </div>
+            
+            <div class="form-actions">
+              <button id="btn-search" class="btn btn-primary"><i class="fas fa-search"></i> Rechercher</button>
+              <button id="btn-reset" class="btn"><i class="fas fa-undo"></i> Réinitialiser</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Actions bar -->
+      <div class="actions-bar">
+        <button id="btn-add-formation" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter une formation</button>
+        <div class="info-display">
+          <span id="formations-count" class="badge badge-warning">3 formations</span>
+        </div>
+      </div>
+      
+      <!-- Liste des formations -->
+      <section class="missions-section" id="liste">
+        <h2><i class="fas fa-list"></i> Liste des formations</h2>
+        <div class="cards-container">
+          <!-- Formation 1 -->
+          <div class="card mission-card">
+            <div class="card-header">
+              <div class="mission-header-content">
+                <h3 class="card-title">Tactique de base</h3>
+                <span class="badge badge-warning">F001</span>
+              </div>
+              <span class="category-badge category-tactique">Tactique</span>
+            </div>
+            <div class="card-content">
+              <div class="mission-info">
+                <div class="info-row">
+                  <span class="info-label">Niveau : </span>
+                  <span class="info-value"><span class="level-badge level-debutant">Débutant</span></span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Durée : </span>
+                  <span class="info-value">2 jours</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Description : </span>
+                  <span class="info-value description-text">Manœuvres élémentaires et discipline de feu</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Instructeurs : </span>
+                  <span class="info-value instructor-text">Sgt. FURY, Lt. ICEMAN</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Soldats formés : </span>
+                  <span class="info-value">24</span>
+                </div>
+              </div>
+              <div class="mission-progress">
+                <div class="progress-label">Taux de réussite: 85%</div>
+                <div class="progress-bar">
+                  <div class="progress-fill progress-85"></div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm" title="Voir les détails"><i class="fas fa-eye"></i> Détails</button>
+              <button class="btn btn-sm" title="Modifier la formation"><i class="fas fa-edit"></i> Modifier</button>
+              <button class="btn btn-sm" title="Voir les soldats formés"><i class="fas fa-users"></i> Soldats</button>
+            </div>
+          </div>
+          
+          <!-- Formation 2 -->
+          <div class="card mission-card">
+            <div class="card-header">
+              <div class="mission-header-content">
+                <h3 class="card-title">Tir longue portée</h3>
+                <span class="badge badge-warning">F002</span>
+              </div>
+              <span class="category-badge category-combat">Combat</span>
+            </div>
+            <div class="card-content">
+              <div class="mission-info">
+                <div class="info-row">
+                  <span class="info-label">Niveau : </span>
+                  <span class="info-value"><span class="level-badge level-intermediaire">Intermédiaire</span></span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Durée : </span>
+                  <span class="info-value">5 jours</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Description : </span>
+                  <span class="info-value description-text">Utilisation des armes à longue distance</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Instructeurs : </span>
+                  <span class="info-value instructor-text">Cpt. NICOLSTAFF71</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Soldats formés : </span>
+                  <span class="info-value">12</span>
+                </div>
+              </div>
+              <div class="mission-progress">
+                <div class="progress-label">Taux de réussite: 92%</div>
+                <div class="progress-bar">
+                  <div class="progress-fill progress-92"></div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm" title="Voir les détails"><i class="fas fa-eye"></i> Détails</button>
+              <button class="btn btn-sm" title="Modifier la formation"><i class="fas fa-edit"></i> Modifier</button>
+              <button class="btn btn-sm" title="Voir les soldats formés"><i class="fas fa-users"></i> Soldats</button>
+            </div>
+          </div>
+          
+          <!-- Formation 3 -->
+          <div class="card mission-card">
+            <div class="card-header">
+              <div class="mission-header-content">
+                <h3 class="card-title">Secourisme de combat</h3>
+                <span class="badge badge-warning">F003</span>
+              </div>
+              <span class="category-badge category-medical">Médical</span>
+            </div>
+            <div class="card-content">
+              <div class="mission-info">
+                <div class="info-row">
+                  <span class="info-label">Niveau : </span>
+                  <span class="info-value"><span class="level-badge level-intermediaire">Intermédiaire</span></span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Durée : </span>
+                  <span class="info-value">3 jours</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Description : </span>
+                  <span class="info-value description-text">Premiers soins et évacuation médicale en zone de combat</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Instructeurs : </span>
+                  <span class="info-value instructor-text">Lt. OLIVE, Sgt. FURY</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Soldats formés : </span>
+                  <span class="info-value">18</span>
+                </div>
+              </div>
+              <div class="mission-progress">
+                <div class="progress-label">Taux de réussite: 78%</div>
+                <div class="progress-bar">
+                  <div class="progress-fill progress-78"></div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm" title="Voir les détails"><i class="fas fa-eye"></i> Détails</button>
+              <button class="btn btn-sm" title="Modifier la formation"><i class="fas fa-edit"></i> Modifier</button>
+              <button class="btn btn-sm" title="Voir les soldats formés"><i class="fas fa-users"></i> Soldats</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Missions - Eagle Operator</title>
+  <link href="../styles/global.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <img src="../assets/logos/logo.png" alt="Logo Eagle Company" class="h-16">
+    <h1><i class="fas fa-flag"></i> Gestion des missions</h1>
+  </header>
+  <main>
+    <div class="app-container">
+      <!-- Section filtres -->
+      <section class="missions-section" id="filtres">
+        <h2><i class="fas fa-filter"></i> Filtres</h2>
+        <div class="filters-container">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="filter-status">Statut</label>
+              <select id="filter-status" class="form-control">
+                <option value="">Tous</option>
+                <option value="en cours">En cours</option>
+                <option value="planifiée">Planifiée</option>
+                <option value="terminée">Terminée</option>
+                <option value="annulée">Annulée</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="filter-type">Type</label>
+              <select id="filter-type" class="form-control">
+                <option value="">Tous</option>
+                <option value="combat">Combat</option>
+                <option value="reconnaissance">Reconnaissance</option>
+                <option value="extraction">Extraction</option>
+                <option value="escorte">Escorte</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="filter-priority">Priorité</label>
+              <select id="filter-priority" class="form-control">
+                <option value="">Toutes</option>
+                <option value="haute">Haute</option>
+                <option value="moyenne">Moyenne</option>
+                <option value="basse">Basse</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="search">Recherche</label>
+              <input type="text" id="search" class="form-control" placeholder="Nom, code ou lieu...">
+            </div>
+            
+            <div class="form-actions">
+              <button id="btn-search" class="btn btn-primary"><i class="fas fa-search"></i> Rechercher</button>
+              <button id="btn-reset" class="btn"><i class="fas fa-undo"></i> Réinitialiser</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Actions bar -->
+      <div class="actions-bar">
+        <button id="btn-add-mission" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter une mission</button>
+        <div class="info-display">
+          <span id="missions-count" class="badge badge-warning">5 missions</span>
+        </div>
+      </div>
+      
+      <!-- Liste des missions -->
+      <section class="missions-section" id="liste">
+        <h2><i class="fas fa-list"></i> Liste des missions</h2>
+        <div class="cards-container">
+          <!-- Mission 1 -->
+          <div class="card mission-card">
+            <div class="card-header">
+              <div class="mission-header-content">
+                <h3 class="card-title">Opération Aigle Noir</h3>
+                <span class="badge badge-warning">MSN-001</span>
+              </div>
+              <span class="mission-status status-active">En cours</span>
+            </div>
+            <div class="card-content">
+              <div class="mission-info">
+                <div class="info-row">
+                  <span class="info-label">Type:</span>
+                  <span class="info-value">Combat</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Lieu:</span>
+                  <span class="info-value">Secteur Alpha</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Début:</span>
+                  <span class="info-value">15/06/2023</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Fin prévue:</span>
+                  <span class="info-value">18/06/2023</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Unités:</span>
+                  <span class="info-value">Alpha 1-1, Bravo Squad</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Priorité:</span>
+                  <span class="info-value priority-high">Haute</span>
+                </div>
+              </div>
+              <div class="mission-progress">
+                <div class="progress-label">Progression: 75%</div>
+                <div class="progress-bar">
+                  <div class="progress-fill progress-75"></div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm" title="Voir les détails"><i class="fas fa-eye"></i> Détails</button>
+              <button class="btn btn-sm" title="Modifier la mission"><i class="fas fa-edit"></i> Modifier</button>
+              <button class="btn btn-sm btn-danger" title="Terminer la mission"><i class="fas fa-flag-checkered"></i> Terminer</button>
+            </div>
+          </div>
+          
+          <!-- Mission 2 -->
+          <div class="card mission-card">
+            <div class="card-header">
+              <div class="mission-header-content">
+                <h3 class="card-title">Opération Sentinelle</h3>
+                <span class="badge badge-warning">MSN-002</span>
+              </div>
+              <span class="mission-status status-planned">Planifiée</span>
+            </div>
+            <div class="card-content">
+              <div class="mission-info">
+                <div class="info-row">
+                  <span class="info-label">Type:</span>
+                  <span class="info-value">Reconnaissance</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Lieu:</span>
+                  <span class="info-value">Secteur Delta</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Début:</span>
+                  <span class="info-value">20/06/2023</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Fin prévue:</span>
+                  <span class="info-value">22/06/2023</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Unités:</span>
+                  <span class="info-value">Charlie Squad</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Priorité:</span>
+                  <span class="info-value priority-medium">Moyenne</span>
+                </div>
+              </div>
+              <div class="mission-progress">
+                <div class="progress-label">Progression: 0%</div>
+                <div class="progress-bar">
+                  <div class="progress-fill progress-0"></div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm" title="Voir les détails"><i class="fas fa-eye"></i> Détails</button>
+              <button class="btn btn-sm" title="Modifier la mission"><i class="fas fa-edit"></i> Modifier</button>
+              <button class="btn btn-sm btn-success" title="Lancer la mission"><i class="fas fa-play"></i> Lancer</button>
+            </div>
+          </div>
+          
+          <!-- Mission 3 -->
+          <div class="card mission-card">
+            <div class="card-header">
+              <div class="mission-header-content">
+                <h3 class="card-title">Opération Bouclier</h3>
+                <span class="badge badge-warning">MSN-003</span>
+              </div>
+              <span class="mission-status status-completed">Terminée</span>
+            </div>
+            <div class="card-content">
+              <div class="mission-info">
+                <div class="info-row">
+                  <span class="info-label">Type:</span>
+                  <span class="info-value">Escorte</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Lieu:</span>
+                  <span class="info-value">Secteur Bravo</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Début:</span>
+                  <span class="info-value">10/06/2023</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Fin:</span>
+                  <span class="info-value">12/06/2023</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Unités:</span>
+                  <span class="info-value">Alpha 1-2, Bravo Squad</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Priorité:</span>
+                  <span class="info-value priority-high">Haute</span>
+                </div>
+              </div>
+              <div class="mission-progress">
+                <div class="progress-label">Progression: 100%</div>
+                <div class="progress-bar">
+                  <div class="progress-fill progress-100"></div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm" title="Voir les détails"><i class="fas fa-eye"></i> Détails</button>
+              <button class="btn btn-sm" title="Voir le rapport"><i class="fas fa-file-alt"></i> Rapport</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <a href="dashboard.html">Dashboard</a>
+  </footer>
+</body>
+</html>

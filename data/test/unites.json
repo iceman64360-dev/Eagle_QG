@@ -1,0 +1,7 @@
+[
+  {"id_unite": "QG-EAGLE", "nom": "Quartier Général", "type": "quartier_general", "superieur": null, "capacite_max": 1, "occupants": []},
+  {"id_unite": "COMP-EAGLE", "nom": "Eagle Company", "type": "compagnie", "superieur": "QG-EAGLE", "capacite_max": 4, "occupants": []},
+  {"id_unite": "SEC-ALPHA", "nom": "Section Alpha", "type": "section", "superieur": "COMP-EAGLE", "capacite_max": 4, "occupants": []},
+  {"id_unite": "GRP-ALPHA-1", "nom": "Groupe Alpha 1", "type": "groupe", "superieur": "SEC-ALPHA", "capacite_max": 4, "occupants": []},
+  {"id_unite": "ESC-ALPHA-1-1", "nom": "Alpha 1-1", "type": "escouade", "superieur": "GRP-ALPHA-1", "capacite_max": 10, "occupants": ["EGC-001", "EGC-002", "EGC-003", "EGC-004", "EGC-005", "EGC-006", "EGC-007", "EGC-008", "EGC-009"]}
+]

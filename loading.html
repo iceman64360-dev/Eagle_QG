@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eagle Operator - Chargement</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&display=swap');
+    
+    :root {
+      --gold: #ffbf00;
+      --dark-gold: #cc9900;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background-color: #000;
+      color: var(--gold);
+      font-family: 'Orbitron', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    /* Grille tactique */
+    .grid-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(255, 191, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 191, 0, 0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: -1;
+    }
+    
+    /* Logo en filigrane */
+    .logo-watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      max-width: 500px;
+      opacity: 0.05;
+      z-index: -2;
+    }
+    
+    .loading-container {
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+    }
+    
+    .logo {
+      width: 150px;
+      margin-bottom: 2rem;
+      animation: pulse 2s infinite;
+    }
+    
+    h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      letter-spacing: 3px;
+      text-shadow: 0 0 10px rgba(255, 191, 0, 0.5);
+    }
+    
+    .progress-container {
+      width: 100%;
+      height: 10px;
+      background-color: rgba(255, 191, 0, 0.2);
+      border: 1px solid var(--gold);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background-color: var(--gold);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    
+    .status-message {
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      height: 20px;
+      margin-bottom: 1rem;
+    }
+    
+    .coordinates {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+    
+    /* Coin décoratif */
+    .corner {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-color: var(--gold);
+      border-style: solid;
+      border-width: 0;
+    }
+    
+    .corner-tl {
+      top: 20px;
+      left: 20px;
+      border-top-width: 2px;
+      border-left-width: 2px;
+    }
+    
+    .corner-tr {
+      top: 20px;
+      right: 20px;
+      border-top-width: 2px;
+      border-right-width: 2px;
+    }
+    
+    .corner-bl {
+      bottom: 20px;
+      left: 20px;
+      border-bottom-width: 2px;
+      border-left-width: 2px;
+    }
+    
+    .corner-br {
+      bottom: 20px;
+      right: 20px;
+      border-bottom-width: 2px;
+      border-right-width: 2px;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Effet de scan */
+    .scan-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      animation: scan 3s linear infinite;
+      opacity: 0.5;
+      z-index: 10;
+    }
+    
+    @keyframes scan {
+      0% { top: 0; }
+      100% { top: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-overlay"></div>
+  <img src="/assets/logos/logo.png" alt="Eagle Company Logo" class="logo-watermark">
+  
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+  
+  <div class="scan-line"></div>
+  
+  <div class="loading-container">
+    <img src="/assets/logos/logo.png" alt="Eagle Company Logo" class="logo">
+    <h1>Eagle Operator</h1>
+    
+    <div class="progress-container">
+      <div class="progress-bar" id="progress"></div>
+    </div>
+    
+    <div class="status-message" id="status">Initialisation du système...</div>
+  </div>
+  
+  <div class="coordinates" id="coordinates">LAT: 48°51'24.0"N | LONG: 2°21'03.0"E</div>
+  
+  <script>
+    const messages = [
+      "Initialisation du système...",
+      "Chargement des données tactiques...",
+      "Connexion au réseau sécurisé...",
+      "Authentification des utilisateurs...",
+      "Vérification des autorisations...",
+      "Préparation de l'interface...",
+      "Chargement des ressources...",
+      "Finalisation..."
+    ];
+    
+    const progressBar = document.getElementById('progress');
+    const statusElement = document.getElementById('status');
+    const coordinates = document.getElementById('coordinates');
+    
+    let progress = 0;
+    let messageIndex = 0;
+    
+    // Mise à jour des coordonnées aléatoires
+    function updateCoordinates() {
+      const lat = (Math.random() * 10 + 40).toFixed(6);
+      const long = (Math.random() * 10).toFixed(6);
+      coordinates.textContent = `LAT: ${lat}°N | LONG: ${long}°E`;
+    }
+    
+    // Mise à jour de la barre de progression
+    function updateProgress() {
+      if (progress < 100) {
+        progress += Math.random() * 10;
+        if (progress > 100) progress = 100;
+        
+        progressBar.style.width = `${progress}%`;
+        
+        // Changer le message en fonction de la progression
+        const newMessageIndex = Math.floor((progress / 100) * messages.length);
+        if (newMessageIndex !== messageIndex && newMessageIndex < messages.length) {
+          messageIndex = newMessageIndex;
+          statusElement.textContent = messages[messageIndex];
+        }
+        
+        updateCoordinates();
+        
+        if (progress < 100) {
+          setTimeout(updateProgress, 400);
+        } else {
+          // Redirection vers la page principale après un court délai
+          setTimeout(() => {
+            statusElement.textContent = "Accès autorisé. Redirection...";
+            setTimeout(() => {
+              window.location.href = "index.html";
+            }, 1000);
+          }, 500);
+        }
+      }
+    }
+    
+    // Démarrer l'animation après un court délai
+    setTimeout(updateProgress, 800);
+  </script>
+</body>
+</html>
