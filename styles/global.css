@@ -1801,3 +1801,18 @@ button:focus, .btn:focus {
     padding: 1rem 0.5rem;
   }
 }
+
+.modal-universal {
+  background: #222 !important;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+  border-radius: 8px;
+  min-width: 300px;
+  max-width: 90vw;
+  padding: 2em;
+  position: relative;
+  box-shadow: 0 0 20px #000;
+  z-index: 100000 !important;
+  opacity: 1 !important;
+  display: block !important;
+}
