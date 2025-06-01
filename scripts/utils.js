@@ -41,7 +41,7 @@ export function showModal(contentHtml) {
   bg.className = 'modal-bg';
   bg.style = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);z-index:99999;display:flex;align-items:center;justify-content:center;';
   bg.innerHTML = `
-    <div class="modal-universal" style="background:#222;color:#fff;padding:2em;border-radius:8px;min-width:300px;max-width:90vw;position:relative;border:2px solid #fff;box-shadow:0 0 20px #000;z-index:100000;opacity:1;">
+    <div class="eagle-modal" style="background:#222 !important;color:#fff !important;padding:2em !important;border-radius:8px !important;min-width:300px !important;max-width:90vw !important;position:relative !important;border:2px solid #fff !important;box-shadow:0 0 20px #000 !important;z-index:100000 !important;opacity:1 !important;display:block !important;">
       <button class="modal-close" style="position:absolute;top:1em;right:1em;font-size:2em;background:none;border:none;color:#fff;cursor:pointer;">&times;</button>
       <div class="modal-content">${contentHtml}</div>
     </div>

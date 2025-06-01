@@ -1816,3 +1816,18 @@ button:focus, .btn:focus {
   opacity: 1 !important;
   display: block !important;
 }
+
+.eagle-modal {
+  background: #222 !important;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+  border-radius: 8px !important;
+  min-width: 300px !important;
+  max-width: 90vw !important;
+  padding: 2em !important;
+  position: relative !important;
+  box-shadow: 0 0 20px #000 !important;
+  z-index: 100000 !important;
+  opacity: 1 !important;
+  display: block !important;
+}
