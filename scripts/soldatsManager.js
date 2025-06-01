@@ -327,36 +327,36 @@ function initModalTabs() {
   }
 }
 
-// Placeholder functions for modal actions
-function showNewSanctionModal() {
+// Fonctions pour les actions modales
+window.showNewSanctionModal = function() {
     alert("Fonctionnalité 'Nouvelle sanction' à implémenter");
 }
 
-function showPromotionModal() {
+window.showPromotionModal = function() {
     alert("Fonctionnalité 'Promouvoir' à implémenter");
 }
 
-function showRetrogradationModal() {
+window.showRetrogradationModal = function() {
     alert("Fonctionnalité 'Rétrograder' à implémenter");
 }
 
-function showCitationModal() {
+window.showCitationModal = function() {
     alert("Fonctionnalité 'Ajouter citation' à implémenter");
 }
 
-function exportSoldierCard() {
+window.exportSoldierCard = function() {
      alert("Fonctionnalité 'Exporter la fiche' à implémenter");
 }
 
-function exportHistory(format) {
+window.exportHistory = function(format) {
      alert(`Fonctionnalité 'Exporter historique (${format.toUpperCase()})' à implémenter`);
 }
 
-function handleDetailsClick(type, name) {
-    // In a static site, this would likely navigate or show more info on the same page
-    // For now, we'll just show an alert.
+window.handleDetailsClick = function(type, name) {
+    // Dans un site statique, cela naviguerait probablement ou afficherait plus d'informations sur la même page
+    // Pour l'instant, nous affichons simplement une alerte.
     alert(`Fonctionnalité 'Détails ${type}: ${name}' à implémenter (navigation ou modale secondaire)`);
-    // Potential static navigation: window.location.href = `/${type}s.html?name=${encodeURIComponent(name)}`;
+    // Navigation statique potentielle : window.location.href = `/${type}s.html?name=${encodeURIComponent(name)}`;
 }
 
 export function startApp() {
