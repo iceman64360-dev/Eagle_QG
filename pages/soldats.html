@@ -221,31 +221,11 @@
     <a href="dashboard.html">Dashboard</a>
   </footer>
 
-  <!-- Modale Soldat (invisible par défaut) -->
-  <div id="modal-soldat" class="modal" style="display:none;">
-    <div class="modal-content">
-      <span class="modal-close">&times;</span>
-      <div class="modal-body"></div>
-      <button id="btn-close-modal">Fermer</button>
-    </div>
-  </div>
-
-  <form id="soldat-form" style="display:none;">
-    <input type="hidden" id="soldat-id" />
-    <input type="text" id="soldat-nom" placeholder="Nom" />
-    <input type="text" id="soldat-grade" placeholder="Grade" />
-    <input type="text" id="soldat-unite" placeholder="Unité" />
-    <input type="text" id="soldat-statut" placeholder="Statut" />
-    <input type="number" id="soldat-missions" placeholder="Missions" />
-    <textarea id="soldat-notes" placeholder="Notes"></textarea>
-    <button type="submit" class="btn btn-primary">Sauvegarder</button>
-  </form>
-
   <!-- Scripts -->
   <script type="module" src="../scripts/dataManager.js"></script>
-  <script type="module" src="../scripts/modalManager.js"></script>
+  <script type="module" src="../scripts/soldatsManager.js"></script>
   <script type="module">
-    import { startApp } from '../scripts/modalManager.js';
+    import { startApp } from '../scripts/soldatsManager.js';
     document.addEventListener('DOMContentLoaded', startApp);
   </script>
 </body>
