@@ -124,7 +124,7 @@ export async function displayDashboard() {
       </section>
     `;
     // Bouton Ajouter Soldat
-    document.getElementById('add-soldat').onclick = () => {
+    document.getElementById('btn-add-soldat').onclick = () => {
       import('../components/forms/SoldatForm.js').then(({ SoldatForm }) => {
         import('../components/modals/GenericModal.js').then(({ GenericModal }) => {
           const html = GenericModal('Ajouter un soldat', SoldatForm());
