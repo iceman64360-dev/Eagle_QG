@@ -365,6 +365,34 @@ export function startApp() {
   
   // Initialiser les filtres
   initFilters();
+  
+  // Gestionnaire pour le bouton Ajouter un soldat
+  document.getElementById('btn-add-soldat').addEventListener('click', () => {
+    import('../components/forms/SoldatForm.js').then(({ SoldatForm }) => {
+      import('../components/modals/GenericModal.js').then(({ GenericModal }) => {
+        const html = GenericModal('Ajouter un soldat', SoldatForm());
+        document.body.insertAdjacentHTML('beforeend', html);
+        document.getElementById('close-modal').onclick = () => document.getElementById('modal-bg').remove();
+        document.getElementById('modal-bg').onclick = e => { if (e.target.id === 'modal-bg') document.getElementById('modal-bg').remove(); };
+        document.getElementById('cancel-form').onclick = () => document.getElementById('modal-bg').remove();
+        document.getElementById('soldat-form').onsubmit = e => {
+          e.preventDefault();
+          const fd = new FormData(e.target);
+          const data = Object.fromEntries(fd.entries());
+          // Transforme les champs multiples en array
+          if(data.formations_suivies) data.formations_suivies = data.formations_suivies.split(',').map(s=>s.trim()).filter(Boolean);
+          if(data.faits_d_armes) data.faits_d_armes = data.faits_d_armes.split(',').map(s=>s.trim()).filter(Boolean);
+          if(data.recompenses) data.recompenses = data.recompenses.split(',').map(s=>s.trim()).filter(Boolean);
+          data.missions_effectuees = parseInt(data.missions_effectuees)||0;
+          addItem('soldats', data);
+          document.getElementById('modal-bg').remove();
+          showToast('Soldat ajouté !');
+          // Recharger la liste des soldats
+          initSoldats();
+        };
+      });
+    });
+  });
 }
 
 function initFilters() {
