@@ -1,28 +1,19 @@
 // dataManager.js — version statique pour GitHub Pages
 
-export async function getSoldats() {
-  const res = await fetch('data/test/soldats.json');
-  if (!res.ok) throw new Error('Erreur lors de la récupération des soldats');
-  return await res.json();
+// Utilitaire générique de chargement de données JSON de data/test
+async function fetchData(name) {
+  const res = await fetch(`data/test/${name}.json`);
+  if (!res.ok) throw new Error(`Erreur chargement ${name}`);
+  return res.json();
 }
 
-export async function getUnites() {
-  const res = await fetch('data/test/unites.json');
-  if (!res.ok) throw new Error('Erreur lors de la récupération des unités');
-  return await res.json();
-}
+export const getSoldats = () => fetchData('soldats');
 
-export async function getMissions() {
-  const res = await fetch('data/test/missions.json');
-  if (!res.ok) throw new Error('Erreur lors de la récupération des missions');
-  return await res.json();
-}
+export const getUnites = () => fetchData('unites');
 
-export async function getFormations() {
-  const res = await fetch('data/test/formations.json');
-  if (!res.ok) throw new Error('Erreur lors de la récupération des formations');
-  return await res.json();
-}
+export const getMissions = () => fetchData('missions');
+
+export const getFormations = () => fetchData('formations');
 
 // Les fonctions de création, modification, suppression ne font rien en statique
 export async function createSoldat() { throw new Error('Non supporté en statique'); }
