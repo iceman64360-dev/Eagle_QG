@@ -1,5 +1,4 @@
 // Gestion de l’affichage dynamique (dashboard, alertes, etc.)
-import { fetchData } from './utils.js';
 import { getData, setData, addItem, updateItem, deleteItem } from './dataManager.js';
 import { showToast } from '../components/Toast.js';
 
