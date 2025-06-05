@@ -1,4 +1,5 @@
 import { showModal } from './utils.js';
+import { getSoldats } from './dataManager.js';
 
 export function initSoldats() {
   // Sélectionne tous les boutons Détails
@@ -359,9 +360,9 @@ window.handleDetailsClick = function(type, name) {
     // Navigation statique potentielle : window.location.href = `/${type}s.html?name=${encodeURIComponent(name)}`;
 }
 
-export function startApp() {
-  // Initialiser les soldats
-  initSoldats();
+export async function startApp() {
+  // Charger et afficher la liste des soldats
+  await renderSoldierList();
   
   // Initialiser les filtres
   initFilters();
@@ -388,7 +389,7 @@ export function startApp() {
           document.getElementById('modal-bg').remove();
           showToast('Soldat ajouté !');
           // Recharger la liste des soldats
-          initSoldats();
+          renderSoldierList();
         };
       });
     });
@@ -477,6 +478,54 @@ function updateSoldiersCount() {
   if (countElement) {
     const visibleCount = document.querySelectorAll('.cards-container .card:not(.hidden)').length;
     countElement.textContent = `${visibleCount} soldat${visibleCount > 1 ? 's' : ''}`;
+  }
+}
+
+export async function renderSoldierList() {
+  const container = document.getElementById('soldier-list');
+  if (!container) return;
+  try {
+    const soldats = await getSoldats();
+    container.innerHTML = '';
+    soldats.forEach(s => {
+      const statutClass = s.statut.toLowerCase().replace(/\s+/g, '-');
+      const card = `
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">${s.pseudo}</h3>
+            <span class="badge badge-warning">${s.id}</span>
+          </div>
+          <div class="card-content">
+            <div class="soldier-info">
+              <div class="info-row">
+                <span class="info-label">Grade:</span>
+                <span class="info-value">${s.grade}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Unité:</span>
+                <span class="info-value">${s.unite || ''}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Statut:</span>
+                <span class="info-value status-${statutClass}">${s.statut}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Missions:</span>
+                <span class="info-value">${s.missions_effectuees}</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-sm"><i class="fas fa-eye"></i> Détails</button>
+            <button class="btn btn-sm"><i class="fas fa-edit"></i> Modifier</button>
+          </div>
+        </div>`;
+      container.insertAdjacentHTML('beforeend', card);
+    });
+    initSoldats();
+    updateSoldiersCount();
+  } catch (err) {
+    console.error('Erreur lors du rendu des soldats', err);
   }
 }
 
