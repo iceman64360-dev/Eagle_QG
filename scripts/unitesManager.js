@@ -32,6 +32,9 @@ function renderUniteTree() {
     if (hqUnit) {
         const hqNode = createUniteNode(hqUnit);
         treeContainer.appendChild(hqNode);
+        selectedUnite = hqUnit;
+        updateSelectedNode(hqNode);
+        renderUniteDetails(hqUnit);
     }
 
     const searchInput = document.getElementById('search-unite');
@@ -91,9 +94,19 @@ function createUniteNode(unite) {
             const children = node.querySelector('.unit-children');
             if (children) {
                 children.style.display = children.style.display === 'none' ? 'block' : 'none';
-                toggle.querySelector('i').className = 
+                toggle.querySelector('i').className =
                     children.style.display === 'none' ? 'fas fa-chevron-right' : 'fas fa-chevron-down';
             }
+        });
+    }
+
+    // Sélection de l'unité au clic sur l'en-tête
+    const header = node.querySelector('.unit-header');
+    if (header) {
+        header.addEventListener('click', () => {
+            selectedUnite = unite;
+            updateSelectedNode(node);
+            renderUniteDetails(unite);
         });
     }
 
@@ -116,6 +129,58 @@ function updateUnitesCount() {
     if (countElement) {
         countElement.textContent = `${unites.length} unités`;
     }
+}
+
+function updateSelectedNode(node) {
+    document.querySelectorAll('.unit-selected').forEach(n => n.classList.remove('unit-selected'));
+    node.classList.add('unit-selected');
+}
+
+function updateBreadcrumb(unite) {
+    const breadcrumbEl = document.getElementById('breadcrumb');
+    if (!breadcrumbEl) return;
+    const path = [];
+    let current = unite;
+    while (current) {
+        path.unshift(current.nom);
+        current = current.parent ? unites.find(u => u.id === current.parent) : null;
+    }
+    breadcrumbEl.textContent = path.join(' > ');
+}
+
+function renderUniteDetails(unite) {
+    const container = document.getElementById('unite-details');
+    if (!container) return;
+    container.innerHTML = `
+        <div class="unit-card">
+            <div class="unit-card-header">
+                <h3>${unite.nom}</h3>
+                <span class="badge badge-warning">${unite.id}</span>
+            </div>
+            <div class="unit-card-content">
+                <div class="unit-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">${unite.membres?.length || 0}</div>
+                        <div class="stat-label">Soldats</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">${unite.missions?.length || 0}</div>
+                        <div class="stat-label">Missions</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="unit-card">
+            <div class="unit-card-header">
+                <h3>Membres</h3>
+            </div>
+            <div class="unit-card-content">
+                <ul class="members-list">
+                    ${unite.membres?.map(m => `<li>${m}</li>`).join('') || '<li>Aucun membre</li>'}
+                </ul>
+            </div>
+        </div>`;
+    updateBreadcrumb(unite);
 }
 
 // Filtrer l'arbre des unités selon la recherche
