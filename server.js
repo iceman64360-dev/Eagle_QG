@@ -23,12 +23,14 @@ const missionsRouter = require('./routes/missions');
 const formationsRouter = require('./routes/formations');
 const unitesRouter = require('./routes/unites');
 const alertsRouter = require('./routes/alerts');
+const reportsRouter = require('./routes/reports');
 
 app.use('/api/soldats', soldatsRouter);
 app.use('/api/missions', missionsRouter);
 app.use('/api/formations', formationsRouter);
 app.use('/api/unites', unitesRouter);
 app.use('/api/alerts', alertsRouter);
+app.use('/api/reports', reportsRouter);
 
 // Route racine
 app.get('/', (req, res) => {

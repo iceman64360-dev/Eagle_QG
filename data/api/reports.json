@@ -1,0 +1,10 @@
+[
+  {
+    "id": "REP-001",
+    "soldatId": "EGC-001",
+    "type": "avertissement",
+    "message": "Retard à la formation tactique",
+    "date": "2024-05-01T00:00:00.000Z",
+    "superieur": "CAP-001"
+  }
+]
