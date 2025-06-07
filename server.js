@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs').promises;
@@ -5,10 +6,15 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data/api');
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',')
+  : ['https://votre-username.github.io', 'http://localhost:3000'];
+app.locals.DATA_DIR = DATA_DIR;
 
 // Middleware
 app.use(cors({
-  origin: ['https://votre-username.github.io', 'http://localhost:3000'],
+  origin: allowedOrigins,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type']
 }));
@@ -33,6 +39,16 @@ app.use('/api/alerts', alertsRouter);
 // Route racine
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Expose runtime config to client
+app.get('/config.js', (req, res) => {
+  const config = {
+    PORT,
+    DATA_DIR,
+    ALLOWED_ORIGINS: allowedOrigins,
+  };
+  res.type('application/javascript').send(`window.CONFIG = ${JSON.stringify(config)};`);
 });
 
 // Health check endpoint

@@ -14,7 +14,8 @@ export function getEnv() {
  */
 export async function fetchData(name) {
   const env = getEnv();
-  const url = `/data/${env.toLowerCase()}/${name}.json`;
+  const baseDir = window.CONFIG?.DATA_DIR || `/data/${env.toLowerCase()}`;
+  const url = `${baseDir}/${name}.json`;
   try {
     const response = await fetch(url);
     if (!response.ok) throw new Error(`Erreur lors du chargement de ${url}`);

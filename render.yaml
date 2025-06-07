@@ -10,4 +10,6 @@ services:
       - key: PORT
         value: 3000
       - key: ALLOWED_ORIGINS
-        value: https://votre-username.github.io 
+        value: https://votre-username.github.io
+      - key: DATA_DIR
+        value: data/api

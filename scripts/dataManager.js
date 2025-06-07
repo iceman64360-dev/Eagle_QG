@@ -1,25 +1,29 @@
 // dataManager.js — version statique pour GitHub Pages
 
 export async function getSoldats() {
-  const res = await fetch('data/test/soldats.json');
+  const base = window.CONFIG?.DATA_DIR || 'data/test';
+  const res = await fetch(`${base}/soldats.json`);
   if (!res.ok) throw new Error('Erreur lors de la récupération des soldats');
   return await res.json();
 }
 
 export async function getUnites() {
-  const res = await fetch('data/test/unites.json');
+  const base = window.CONFIG?.DATA_DIR || 'data/test';
+  const res = await fetch(`${base}/unites.json`);
   if (!res.ok) throw new Error('Erreur lors de la récupération des unités');
   return await res.json();
 }
 
 export async function getMissions() {
-  const res = await fetch('data/test/missions.json');
+  const base = window.CONFIG?.DATA_DIR || 'data/test';
+  const res = await fetch(`${base}/missions.json`);
   if (!res.ok) throw new Error('Erreur lors de la récupération des missions');
   return await res.json();
 }
 
 export async function getFormations() {
-  const res = await fetch('data/test/formations.json');
+  const base = window.CONFIG?.DATA_DIR || 'data/test';
+  const res = await fetch(`${base}/formations.json`);
   if (!res.ok) throw new Error('Erreur lors de la récupération des formations');
   return await res.json();
 }
