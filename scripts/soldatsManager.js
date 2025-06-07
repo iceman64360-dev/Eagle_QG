@@ -433,7 +433,7 @@ function initFilters() {
     btnReset.onclick = resetFilters;
   }
   
-  [filterStatus, filterUnite, filterGrade, searchInput].forEach(el => {
+  [filterStatus, filterUnite, filterGrade].forEach(el => {
     if (el) {
       el.onchange = applyFilters;
     } else {
@@ -441,14 +441,14 @@ function initFilters() {
     }
   });
 
-  // Add event listener for 'Enter' key on search input
   if (searchInput) {
-      searchInput.addEventListener('keypress', function(event) {
-          if (event.key === 'Enter') {
-              event.preventDefault(); // Prevent default form submission
-              applyFilters();
-          }
-      });
+    searchInput.addEventListener('input', applyFilters);
+    searchInput.addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        applyFilters();
+      }
+    });
   }
 }
 

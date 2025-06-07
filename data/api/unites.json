@@ -1,8 +1,18 @@
 [
   {
+    "id": "EGC-HQ",
+    "nom": "Eagle Company",
+    "type": "HQ",
+    "children": ["UNT-001", "UNT-002"],
+    "membres": [],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
     "id": "UNT-001",
     "nom": "Alpha 1-1",
-    "type": "Unité tactique",
+    "type": "SQUAD",
+    "parent": "EGC-HQ",
     "chef": "EGC-001",
     "membres": ["EGC-001", "EGC-002", "EGC-003"],
     "specialite": "Opérations spéciales",
@@ -15,7 +25,8 @@
   {
     "id": "UNT-002",
     "nom": "Bravo 2-1",
-    "type": "Unité de support",
+    "type": "SQUAD",
+    "parent": "EGC-HQ",
     "chef": "EGC-004",
     "membres": ["EGC-004", "EGC-005", "EGC-006"],
     "specialite": "Logistique et support",
@@ -25,4 +36,4 @@
     "createdAt": "2024-01-15T00:00:00.000Z",
     "updatedAt": "2024-01-15T00:00:00.000Z"
   }
-] 
+]
