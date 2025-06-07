@@ -3,7 +3,8 @@ const router = express.Router();
 const fs = require('fs').promises;
 const path = require('path');
 
-const DATA_FILE = path.join(__dirname, '../data/api/unites.json');
+const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, '../data/api');
+const DATA_FILE = path.join(DATA_DIR, 'unites.json');
 
 // Helper pour lire/écrire les données
 async function readData() {

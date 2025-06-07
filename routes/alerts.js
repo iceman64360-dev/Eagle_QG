@@ -4,9 +4,10 @@ const fs = require('fs').promises;
 const path = require('path');
 
 // Chemins des fichiers de données
-const SOLDATS_FILE = path.join(__dirname, '../data/api/soldats.json');
-const MISSIONS_FILE = path.join(__dirname, '../data/api/missions.json');
-const FORMATIONS_FILE = path.join(__dirname, '../data/api/formations.json');
+const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, '../data/api');
+const SOLDATS_FILE = path.join(DATA_DIR, 'soldats.json');
+const MISSIONS_FILE = path.join(DATA_DIR, 'missions.json');
+const FORMATIONS_FILE = path.join(DATA_DIR, 'formations.json');
 
 // Helper pour lire les données
 async function readData(filePath) {
