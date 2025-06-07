@@ -1,6 +1,7 @@
 import { showModal } from './utils.js';
-import { createSoldat } from './dataManager.js';
+import { createSoldat, getSoldats } from './dataManager.js';
 import { showToast } from '../components/Toast.js';
+import { SoldatCard } from '../components/cards/SoldatCard.js';
 
 export function initSoldats() {
   // Sélectionne tous les boutons Détails
@@ -361,9 +362,24 @@ window.handleDetailsClick = function(type, name) {
     // Navigation statique potentielle : window.location.href = `/${type}s.html?name=${encodeURIComponent(name)}`;
 }
 
+// Charge les soldats depuis l'API et génère les cartes
+async function loadSoldats() {
+  try {
+    const soldats = await getSoldats();
+    const container = document.getElementById('soldats-list');
+    if (container) {
+      container.innerHTML = soldats.map(s => SoldatCard(s)).join('');
+    }
+    initSoldats();
+    updateSoldiersCount();
+  } catch (err) {
+    console.error('Erreur chargement soldats', err);
+  }
+}
+
 export function startApp() {
-  // Initialiser les soldats
-  initSoldats();
+  // Charger les soldats dynamiquement
+  loadSoldats();
   
   // Initialiser les filtres
   initFilters();
@@ -388,7 +404,7 @@ export function startApp() {
           data.missions_effectuees = parseInt(data.missions_effectuees)||0;
           createSoldat(data).then(() => {
             showToast('Soldat ajouté !');
-            initSoldats();
+            loadSoldats();
           }).catch(err => {
             console.error(err);
             showToast('Erreur lors de la création', 'error');

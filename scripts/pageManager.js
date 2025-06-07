@@ -4,8 +4,10 @@ import { initUnites } from './unitesManager.js';
 import { initSoldats } from './soldatsManager.js';
 import { initMissions } from './missionsManager.js';
 import { initFormations } from './formationsManager.js';
+import { displayDashboard } from './displayManager.js';
 
 const PAGE_INITIALIZERS = {
+    '#dashboard': displayDashboard,
     '#unites': initUnites,
     '#soldats': initSoldats,
     '#missions': initMissions,
