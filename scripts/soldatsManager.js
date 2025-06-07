@@ -1,4 +1,6 @@
 import { showModal } from './utils.js';
+import { createSoldat } from './dataManager.js';
+import { showToast } from '../components/Toast.js';
 
 export function initSoldats() {
   // Sélectionne tous les boutons Détails
@@ -384,11 +386,15 @@ export function startApp() {
           if(data.faits_d_armes) data.faits_d_armes = data.faits_d_armes.split(',').map(s=>s.trim()).filter(Boolean);
           if(data.recompenses) data.recompenses = data.recompenses.split(',').map(s=>s.trim()).filter(Boolean);
           data.missions_effectuees = parseInt(data.missions_effectuees)||0;
-          addItem('soldats', data);
-          document.getElementById('modal-bg').remove();
-          showToast('Soldat ajouté !');
-          // Recharger la liste des soldats
-          initSoldats();
+          createSoldat(data).then(() => {
+            showToast('Soldat ajouté !');
+            initSoldats();
+          }).catch(err => {
+            console.error(err);
+            showToast('Erreur lors de la création', 'error');
+          }).finally(() => {
+            document.getElementById('modal-bg').remove();
+          });
         };
       });
     });

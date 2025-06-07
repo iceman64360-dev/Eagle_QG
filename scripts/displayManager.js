@@ -1,17 +1,16 @@
 // Gestion de l’affichage dynamique (dashboard, alertes, etc.)
-import { fetchData } from './utils.js';
-import { getData, setData, addItem, updateItem, deleteItem } from './dataManager.js';
 import { showToast } from '../components/Toast.js';
+import { getSoldats, getUnites, getMissions, getFormations, createSoldat, createUnite, createMission, createFormation } from './dataManager.js';
 
 /**
  * Affiche le dashboard dynamique dans #app-root
  */
 export async function displayDashboard() {
   try {
-    const soldats = getData('soldats');
-    const unites = getData('unites');
-    const missions = getData('missions');
-    const formations = getData('formations');
+    const soldats = await getSoldats();
+    const unites = await getUnites();
+    const missions = await getMissions();
+    const formations = await getFormations();
     // Stats
     const totalSoldats = soldats.length;
     const totalRecrues = soldats.filter(s => s.grade.toLowerCase().includes('recrue')).length;
@@ -141,10 +140,18 @@ export async function displayDashboard() {
             if(data.faits_d_armes) data.faits_d_armes = data.faits_d_armes.split(',').map(s=>s.trim()).filter(Boolean);
             if(data.recompenses) data.recompenses = data.recompenses.split(',').map(s=>s.trim()).filter(Boolean);
             data.missions_effectuees = parseInt(data.missions_effectuees)||0;
-            addItem('soldats', data);
-            document.getElementById('modal-bg').remove();
-            showToast('Soldat ajouté !');
-            displaySoldats();
+            createSoldat(data)
+              .then(() => {
+                showToast('Soldat ajouté !');
+                displaySoldats();
+              })
+              .catch(err => {
+                console.error(err);
+                showToast('Erreur lors de la création', 'error');
+              })
+              .finally(() => {
+                document.getElementById('modal-bg').remove();
+              });
           };
         });
       });
@@ -163,10 +170,18 @@ export async function displayDashboard() {
             const fd = new FormData(e.target);
             const data = Object.fromEntries(fd.entries());
             if(data.occupants) data.occupants = data.occupants.split(',').map(s=>s.trim()).filter(Boolean);
-            addItem('unites', data);
-            document.getElementById('modal-bg').remove();
-            showToast('Unité ajoutée !');
-            displayUnites();
+            createUnite(data)
+              .then(() => {
+                showToast('Unité ajoutée !');
+                displayUnites();
+              })
+              .catch(err => {
+                console.error(err);
+                showToast('Erreur création unité', 'error');
+              })
+              .finally(() => {
+                document.getElementById('modal-bg').remove();
+              });
           };
         });
       });
@@ -184,10 +199,18 @@ export async function displayDashboard() {
             e.preventDefault();
             const fd = new FormData(e.target);
             const data = Object.fromEntries(fd.entries());
-            addItem('missions', data);
-            document.getElementById('modal-bg').remove();
-            showToast('Mission ajoutée !');
-            displayMissions();
+            createMission(data)
+              .then(() => {
+                showToast('Mission ajoutée !');
+                displayMissions();
+              })
+              .catch(err => {
+                console.error(err);
+                showToast('Erreur création mission', 'error');
+              })
+              .finally(() => {
+                document.getElementById('modal-bg').remove();
+              });
           };
         });
       });
@@ -205,8 +228,17 @@ export async function displayDashboard() {
             e.preventDefault();
             const fd = new FormData(e.target);
             const data = Object.fromEntries(fd.entries());
-            console.log('[AJOUT FORMATION]', data); // Prêt pour intégration backend
-            document.getElementById('modal-bg').remove();
+            createFormation(data)
+              .then(() => {
+                showToast('Formation ajoutée !');
+              })
+              .catch(err => {
+                console.error(err);
+                showToast('Erreur création formation', 'error');
+              })
+              .finally(() => {
+                document.getElementById('modal-bg').remove();
+              });
           };
         });
       });
