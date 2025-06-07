@@ -10,6 +10,10 @@ export async function initUnites() {
         unites = await getUnites();
         renderUniteTree();
         updateUnitesCount();
+        const searchInput = document.getElementById('search-unite');
+        if (searchInput) {
+            searchInput.addEventListener('input', () => filterUnites(searchInput.value));
+        }
     } catch (error) {
         console.error('Erreur lors du chargement des unités:', error);
     }
@@ -28,6 +32,11 @@ function renderUniteTree() {
     if (hqUnit) {
         const hqNode = createUniteNode(hqUnit);
         treeContainer.appendChild(hqNode);
+    }
+
+    const searchInput = document.getElementById('search-unite');
+    if (searchInput && searchInput.value) {
+        filterUnites(searchInput.value);
     }
 }
 
@@ -107,6 +116,20 @@ function updateUnitesCount() {
     if (countElement) {
         countElement.textContent = `${unites.length} unités`;
     }
+}
+
+// Filtrer l'arbre des unités selon la recherche
+function filterUnites(term) {
+    const value = term.toLowerCase();
+    document.querySelectorAll('.unit-node').forEach(node => {
+        const name = node.querySelector('.unit-info h3')?.textContent.toLowerCase() || '';
+        const id = node.querySelector('.unit-id')?.textContent.toLowerCase() || '';
+        if (!value || name.includes(value) || id.includes(value)) {
+            node.style.display = '';
+        } else {
+            node.style.display = 'none';
+        }
+    });
 }
 
 // Gestionnaires d'événements

@@ -976,3 +976,100 @@ input:focus, select:focus, textarea:focus {
     padding-bottom: 0.75rem;
   }
 }
+
+/* Footer styling */
+.site-footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-top: 1px solid var(--gold);
+}
+
+.site-footer a {
+  color: var(--gold);
+  text-decoration: none;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--gold);
+  border-radius: 3px;
+  margin: 0 0.25rem;
+  transition: background-color 0.2s ease;
+}
+
+.site-footer a:hover {
+  background-color: rgba(255, 191, 0, 0.1);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Unit tree */
+.unit-tree {
+  margin-top: 1rem;
+}
+
+.unit-node {
+  margin-left: 1rem;
+}
+
+.unit-hq {
+  margin-left: 0;
+}
+
+.unit-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  background-color: rgba(255, 191, 0, 0.05);
+}
+
+.unit-actions {
+  margin-left: auto;
+}
+
+.unit-children {
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.unit-toggle {
+  cursor: pointer;
+  width: 1rem;
+}
+
+/* Unit details cards */
+.unit-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.unit-card {
+  border: 1px solid var(--gold);
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+}
+
+.unit-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 191, 0, 0.3);
+}
+
+.search-input {
+  padding: 0.4rem 0.6rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  border-radius: 3px;
+}
