@@ -1,33 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs').promises;
-const path = require('path');
-
-const DATA_FILE = path.join(__dirname, '../data/api/formations.json');
-
-// Helper pour lire/écrire les données
-async function readData() {
-  try {
-    const data = await fs.readFile(DATA_FILE, 'utf8');
-    return JSON.parse(data);
-  } catch (error) {
-    if (error.code === 'ENOENT') {
-      await fs.writeFile(DATA_FILE, JSON.stringify([]));
-      return [];
-    }
-    throw error;
-  }
-}
-
-async function writeData(data) {
-  await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2));
-}
+const formations = require('../dal/formations');
 
 // GET /api/formations
 router.get('/', async (req, res) => {
   try {
-    const formations = await readData();
-    res.json(formations);
+    const list = await formations.all();
+    res.json(list);
   } catch (error) {
     res.status(500).json({ error: 'Erreur lors de la lecture des formations' });
   }
@@ -36,8 +15,7 @@ router.get('/', async (req, res) => {
 // GET /api/formations/:id
 router.get('/:id', async (req, res) => {
   try {
-    const formations = await readData();
-    const formation = formations.find(f => f.id === req.params.id);
+    const formation = await formations.get(req.params.id);
     if (!formation) {
       return res.status(404).json({ error: 'Formation non trouvée' });
     }
@@ -50,16 +28,13 @@ router.get('/:id', async (req, res) => {
 // POST /api/formations
 router.post('/', async (req, res) => {
   try {
-    const formations = await readData();
+    const list = await formations.all();
     const newFormation = {
-      id: `FOR-${String(formations.length + 1).padStart(3, '0')}`,
-      ...req.body,
-      createdAt: new Date().toISOString(),
-      status: 'planifiée'
+      id: `FOR-${String(list.length + 1).padStart(3, '0')}`,
+      ...req.body
     };
-    formations.push(newFormation);
-    await writeData(formations);
-    res.status(201).json(newFormation);
+    const created = await formations.create(newFormation);
+    res.status(201).json(created);
   } catch (error) {
     res.status(500).json({ error: 'Erreur lors de la création de la formation' });
   }
@@ -68,18 +43,11 @@ router.post('/', async (req, res) => {
 // PUT /api/formations/:id
 router.put('/:id', async (req, res) => {
   try {
-    const formations = await readData();
-    const index = formations.findIndex(f => f.id === req.params.id);
-    if (index === -1) {
+    const updated = await formations.update(req.params.id, req.body);
+    if (!updated) {
       return res.status(404).json({ error: 'Formation non trouvée' });
     }
-    formations[index] = {
-      ...formations[index],
-      ...req.body,
-      updatedAt: new Date().toISOString()
-    };
-    await writeData(formations);
-    res.json(formations[index]);
+    res.json(updated);
   } catch (error) {
     res.status(500).json({ error: 'Erreur lors de la mise à jour de la formation' });
   }
@@ -88,16 +56,14 @@ router.put('/:id', async (req, res) => {
 // DELETE /api/formations/:id
 router.delete('/:id', async (req, res) => {
   try {
-    const formations = await readData();
-    const filteredFormations = formations.filter(f => f.id !== req.params.id);
-    if (filteredFormations.length === formations.length) {
+    const removed = await formations.remove(req.params.id);
+    if (!removed) {
       return res.status(404).json({ error: 'Formation non trouvée' });
     }
-    await writeData(filteredFormations);
     res.status(204).send();
   } catch (error) {
     res.status(500).json({ error: 'Erreur lors de la suppression de la formation' });
   }
 });
 
-module.exports = router; 
+module.exports = router;

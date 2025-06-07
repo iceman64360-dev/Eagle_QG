@@ -1,34 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs').promises;
-const path = require('path');
-
-const DATA_FILE = path.join(__dirname, '../data/api/soldats.json');
-
-// Helper pour lire/écrire les données
-async function readData() {
-  try {
-    const data = await fs.readFile(DATA_FILE, 'utf8');
-    return JSON.parse(data);
-  } catch (error) {
-    if (error.code === 'ENOENT') {
-      // Si le fichier n'existe pas, on le crée avec un tableau vide
-      await fs.writeFile(DATA_FILE, JSON.stringify([]));
-      return [];
-    }
-    throw error;
-  }
-}
-
-async function writeData(data) {
-  await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2));
-}
+const soldats = require('../dal/soldats');
 
 // GET /api/soldats
 router.get('/', async (req, res) => {
   try {
-    const soldats = await readData();
-    res.json(soldats);
+    const list = await soldats.all();
+    res.json(list);
   } catch (error) {
     res.status(500).json({ error: 'Erreur lors de la lecture des soldats' });
   }
@@ -37,8 +15,7 @@ router.get('/', async (req, res) => {
 // GET /api/soldats/:id
 router.get('/:id', async (req, res) => {
   try {
-    const soldats = await readData();
-    const soldat = soldats.find(s => s.id === req.params.id);
+    const soldat = await soldats.get(req.params.id);
     if (!soldat) {
       return res.status(404).json({ error: 'Soldat non trouvé' });
     }
@@ -51,15 +28,13 @@ router.get('/:id', async (req, res) => {
 // POST /api/soldats
 router.post('/', async (req, res) => {
   try {
-    const soldats = await readData();
+    const list = await soldats.all();
     const newSoldat = {
-      id: `EGC-${String(soldats.length + 1).padStart(3, '0')}`,
-      ...req.body,
-      createdAt: new Date().toISOString()
+      id: `EGC-${String(list.length + 1).padStart(3, '0')}`,
+      ...req.body
     };
-    soldats.push(newSoldat);
-    await writeData(soldats);
-    res.status(201).json(newSoldat);
+    const created = await soldats.create(newSoldat);
+    res.status(201).json(created);
   } catch (error) {
     res.status(500).json({ error: 'Erreur lors de la création du soldat' });
   }
@@ -68,18 +43,11 @@ router.post('/', async (req, res) => {
 // PUT /api/soldats/:id
 router.put('/:id', async (req, res) => {
   try {
-    const soldats = await readData();
-    const index = soldats.findIndex(s => s.id === req.params.id);
-    if (index === -1) {
+    const updated = await soldats.update(req.params.id, req.body);
+    if (!updated) {
       return res.status(404).json({ error: 'Soldat non trouvé' });
     }
-    soldats[index] = {
-      ...soldats[index],
-      ...req.body,
-      updatedAt: new Date().toISOString()
-    };
-    await writeData(soldats);
-    res.json(soldats[index]);
+    res.json(updated);
   } catch (error) {
     res.status(500).json({ error: 'Erreur lors de la mise à jour du soldat' });
   }
@@ -88,16 +56,14 @@ router.put('/:id', async (req, res) => {
 // DELETE /api/soldats/:id
 router.delete('/:id', async (req, res) => {
   try {
-    const soldats = await readData();
-    const filteredSoldats = soldats.filter(s => s.id !== req.params.id);
-    if (filteredSoldats.length === soldats.length) {
+    const removed = await soldats.remove(req.params.id);
+    if (!removed) {
       return res.status(404).json({ error: 'Soldat non trouvé' });
     }
-    await writeData(filteredSoldats);
     res.status(204).send();
   } catch (error) {
     res.status(500).json({ error: 'Erreur lors de la suppression du soldat' });
   }
 });
 
-module.exports = router; 
+module.exports = router;
