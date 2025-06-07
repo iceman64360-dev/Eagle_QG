@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const fs = require('fs').promises;
 const path = require('path');
 
 const app = express();
@@ -18,16 +17,13 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
 // Routes
-const soldatsRouter = require('./routes/soldats');
-const missionsRouter = require('./routes/missions');
-const formationsRouter = require('./routes/formations');
-const unitesRouter = require('./routes/unites');
+const createCrudRouter = require('./routes/genericCrud');
 const alertsRouter = require('./routes/alerts');
 
-app.use('/api/soldats', soldatsRouter);
-app.use('/api/missions', missionsRouter);
-app.use('/api/formations', formationsRouter);
-app.use('/api/unites', unitesRouter);
+app.use('/api/soldats', createCrudRouter('soldats', 'EGC'));
+app.use('/api/missions', createCrudRouter('missions', 'MIS'));
+app.use('/api/formations', createCrudRouter('formations', 'FOR'));
+app.use('/api/unites', createCrudRouter('unites', 'UNT'));
 app.use('/api/alerts', alertsRouter);
 
 // Route racine
