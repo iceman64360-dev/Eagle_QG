@@ -364,7 +364,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* Modals */
-.modal-bg {
+.modal-bg, #modal-bg {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
@@ -817,10 +817,10 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .modal-bg {
-    padding: 0.5rem;
-  }
+  @media (max-width: 768px) {
+    .modal-bg, #modal-bg {
+      padding: 0.5rem;
+    }
 
   .eagle-modal {
     width: 100% !important;
